@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class AppColors {
+ abstract class AppColors {
   static const Color primaryColor = Color(0xFF1E5D43);
   static const Color primaryContainer = Color.fromARGB(153, 209, 250, 229);
   //-
