@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:masar/core/routing/app_router.dart';
 import 'package:masar/core/theme/app_themes.dart';
 
@@ -13,7 +12,6 @@ class Masar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp.router(
       title: 'مسار',
       theme: AppThemes.lightTheme,
@@ -24,26 +22,18 @@ class Masar extends StatelessWidget {
       // we returned a media query widget to add a text scaling feature to the app
       builder: (context, child) {
         final mediaQueryData = MediaQuery.of(context);
-        return MediaQuery(data: mediaQueryData.copyWith(
-          textScaler: mediaQueryData.textScaler.clamp(
-            minScaleFactor: 0.8,
-            maxScaleFactor: 1.2,
+        return MediaQuery(
+          data: mediaQueryData.copyWith(
+            textScaler: mediaQueryData.textScaler.clamp(
+              minScaleFactor: 0.8,
+              maxScaleFactor: 1.2,
+            ),
           ),
-        ), child: child!,);
+          child: child!,
+        );
       },
     );
   }
 }
 
-class MainScreen extends StatelessWidget {
-  const new({super.key, required this.navigationShell});
-  final StatefulNavigationShell navigationShell;
-  
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: navigationShell,
-      bottomNavigationBar: null, // a bottom navigation bar will be added Here
-    );
-  }
-}
+
