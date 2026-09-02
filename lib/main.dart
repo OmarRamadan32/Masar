@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:masar/core/router/app_router.dart';
+import 'package:masar/core/routing/app_router.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +33,7 @@ class Masar extends StatelessWidget {
 class MainScreen extends StatelessWidget {
   const new({super.key, required this.navigationShell});
   final StatefulNavigationShell navigationShell;
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

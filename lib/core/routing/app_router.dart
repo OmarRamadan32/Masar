@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:masar/core/router/routes.dart';
+import 'package:masar/core/routing/routes.dart';
 import 'package:masar/main.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
