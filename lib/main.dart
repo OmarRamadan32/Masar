@@ -17,6 +17,8 @@ class Masar extends StatelessWidget {
     return MaterialApp.router(
       title: 'مسار',
       theme: AppThemes.lightTheme,
+      themeMode: ThemeMode.light,
+
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
       // we returned a media query widget to add a text scaling feature to the app
