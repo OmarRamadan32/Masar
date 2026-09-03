@@ -6,7 +6,7 @@ class NoteCardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return const Text(
       "التأكد من تفاصيل حجز الطيران، مراجعة تأكيد الفندق، وإعداد قائمة الأماكن السياحية المخطط لزيارتها",
       style: AppStyles.primaryRegular14,
     );
