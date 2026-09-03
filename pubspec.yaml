@@ -41,6 +41,7 @@ dependencies:
   bloc: ^9.2.1
   flutter_bloc: ^9.1.1
   dartz: ^0.10.1
+  iconsax_plus: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -80,7 +81,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-fonts:
+  fonts:
     - family: Tajawal
       fonts:
         - asset: assets/fonts/Tajawal-ExtraLight.ttf

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:masar/core/routing/routes.dart';
@@ -24,7 +25,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.notes,
-              builder: (context, state) => const SizedBox(),
+              builder: (context, state) => const Center(child: Text("0")),
             ),
           ],
         ),
@@ -33,7 +34,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.tasks,
-              builder: (context, state) => const SizedBox(),
+              builder: (context, state) => const Center(child: Text("1")),
             ),
           ],
         ),
@@ -42,7 +43,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.categories,
-              builder: (context, state) => const SizedBox(),
+              builder: (context, state) => const Center(child: Text("2")),
             ),
           ],
         ),
@@ -51,7 +52,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.settings,
-              builder: (context, state) => const SizedBox(),
+              builder: (context, state) => const Center(child: Text("3")),
             ),
           ],
         ),

@@ -13,9 +13,8 @@ class AppThemes {
     inputDecorationTheme: inputDecorationTheme,
     buttonTheme: buttonTheme,
     
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       elevation: 0,
-
       backgroundColor: AppColors.surfacePrimaryColor
     )
   );
