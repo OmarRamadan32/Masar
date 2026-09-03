@@ -21,19 +21,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           BottomNavBarItem(
-            isActive: navigationShell.currentIndex == 3,
-            icon: IconsaxPlusBold.setting,
-            title: 'الاعدادات',
+            isActive: navigationShell.currentIndex == 0,
+            icon: IconsaxPlusBold.note_21,
+            title: 'الملاحظات',
             onTap: () {
-              navigationShell.goBranch(3);
-            },
-          ),
-          BottomNavBarItem(
-            isActive: navigationShell.currentIndex == 2,
-            icon: IconsaxPlusBold.category_2,
-            title: 'الفئات',
-            onTap: () {
-              navigationShell.goBranch(2);
+              navigationShell.goBranch(0);
             },
           ),
           BottomNavBarItem(
@@ -45,11 +37,19 @@ class CustomBottomNavigationBar extends StatelessWidget {
             },
           ),
           BottomNavBarItem(
-            isActive: navigationShell.currentIndex == 0,
-            icon: IconsaxPlusBold.note_21,
-            title: 'الملاحظات',
+            isActive: navigationShell.currentIndex == 2,
+            icon: IconsaxPlusBold.category_2,
+            title: 'الفئات',
             onTap: () {
-              navigationShell.goBranch(0);
+              navigationShell.goBranch(2);
+            },
+          ),
+          BottomNavBarItem(
+            isActive: navigationShell.currentIndex == 3,
+            icon: IconsaxPlusBold.setting,
+            title: 'الاعدادات',
+            onTap: () {
+              navigationShell.goBranch(3);
             },
           ),
         ],

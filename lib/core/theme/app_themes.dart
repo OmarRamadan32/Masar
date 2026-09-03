@@ -12,7 +12,7 @@ class AppThemes {
     brightness: Brightness.light,
     inputDecorationTheme: inputDecorationTheme,
     buttonTheme: buttonTheme,
-    
+    scaffoldBackgroundColor: AppColors.surfacePrimaryColor,
     appBarTheme: const AppBarTheme(
       elevation: 0,
       backgroundColor: AppColors.surfacePrimaryColor

@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0),
-        child: CustomBottomNavigationBar(navigationShell: navigationShell,),
+        child: CustomBottomNavigationBar(navigationShell: navigationShell),
       ),
     );
   }

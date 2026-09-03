@@ -22,18 +22,19 @@ class Masar extends StatelessWidget {
       // we returned a media query widget to add a text scaling feature to the app
       builder: (context, child) {
         final mediaQueryData = MediaQuery.of(context);
-        return MediaQuery(
-          data: mediaQueryData.copyWith(
-            textScaler: mediaQueryData.textScaler.clamp(
-              minScaleFactor: 0.8,
-              maxScaleFactor: 1.2,
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: MediaQuery(
+            data: mediaQueryData.copyWith(
+              textScaler: mediaQueryData.textScaler.clamp(
+                minScaleFactor: 0.8,
+                maxScaleFactor: 1.2,
+              ),
             ),
+            child: child!,
           ),
-          child: child!,
         );
       },
     );
   }
 }
-
-

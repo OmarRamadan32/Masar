@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/features/main_layout/views/main_view.dart';
+import 'package:masar/features/notes/presentation/views/notes_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -25,7 +26,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.notes,
-              builder: (context, state) => const Center(child: Text("0")),
+              builder: (context, state) => const Center(child: NotesScreen()),
             ),
           ],
         ),
