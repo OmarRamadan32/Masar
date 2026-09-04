@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:masar/core/theme/app_sizes.dart';
+import 'package:masar/features/main_layout/widgets/screen_title.dart';
 import 'package:masar/features/notes/presentation/widgets/note_card.dart';
 
 class NotesScreen extends StatelessWidget {
@@ -7,8 +9,8 @@ class NotesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [ NoteCard()],
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [AppSizes.h32, ScreenTitle(), AppSizes.h32, NoteCard()],
     );
   }
 }
