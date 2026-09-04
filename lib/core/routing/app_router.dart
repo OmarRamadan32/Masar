@@ -26,7 +26,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.notes,
-              builder: (context, state) => const Center(child: NotesScreen()),
+              builder: (context, state) => const NotesScreen(),
             ),
           ],
         ),

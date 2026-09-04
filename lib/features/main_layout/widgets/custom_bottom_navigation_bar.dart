@@ -4,55 +4,53 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:masar/features/main_layout/widgets/bottom_nav_bar_item.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-  const new({super.key, required this.navigationShell});
+  const CustomBottomNavigationBar({super.key, required this.navigationShell});
+
   final StatefulNavigationShell navigationShell;
+
+  void _onItemTapped(int index) {
+    if (index == navigationShell.currentIndex) return;
+
+    navigationShell.goBranch(index);
+  }
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
+
+    // قائمة بيانات أزرار الـ Navigation
+    final navItems = [
+      (icon: IconsaxPlusBold.note_21, title: 'الملاحظات'),
+      (icon: IconsaxPlusBold.task_square, title: 'المهام'),
+      (icon: IconsaxPlusBold.category_2, title: 'الفئات'),
+      (icon: IconsaxPlusBold.setting, title: 'الإعدادات'),
+    ];
+
     return Container(
       width: double.infinity,
-      height: 60,
       decoration: BoxDecoration(
         color: theme.scaffoldBackgroundColor,
-        border: const Border(top: BorderSide(color: Colors.black12)),
+        border: const Border(
+          top: BorderSide(color: Colors.black12, width: 0.5),
+        ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          BottomNavBarItem(
-            isActive: navigationShell.currentIndex == 0,
-            icon: IconsaxPlusBold.note_21,
-            title: 'الملاحظات',
-            onTap: () {
-              navigationShell.goBranch(0);
-            },
+      child: SafeArea(
+        top: false,
+        child: SizedBox(
+          height: 64,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: List.generate(navItems.length, (index) {
+              final item = navItems[index];
+              return BottomNavBarItem(
+                isActive: navigationShell.currentIndex == index,
+                icon: item.icon,
+                title: item.title,
+                onTap: () => _onItemTapped(index),
+              );
+            }),
           ),
-          BottomNavBarItem(
-            isActive: navigationShell.currentIndex == 1,
-            icon: IconsaxPlusBold.task_square,
-            title: 'المهام',
-            onTap: () {
-              navigationShell.goBranch(1);
-            },
-          ),
-          BottomNavBarItem(
-            isActive: navigationShell.currentIndex == 2,
-            icon: IconsaxPlusBold.category_2,
-            title: 'الفئات',
-            onTap: () {
-              navigationShell.goBranch(2);
-            },
-          ),
-          BottomNavBarItem(
-            isActive: navigationShell.currentIndex == 3,
-            icon: IconsaxPlusBold.setting,
-            title: 'الاعدادات',
-            onTap: () {
-              navigationShell.goBranch(3);
-            },
-          ),
-        ],
+        ),
       ),
     );
   }
