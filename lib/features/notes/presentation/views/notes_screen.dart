@@ -10,7 +10,7 @@ class NotesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: [AppSizes.h32, ScreenTitle(), AppSizes.h32, NoteCard()],
+      children: [ScreenTitle(), AppSizes.h10, NoteCard()],
     );
   }
 }

@@ -9,14 +9,19 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("مسار"),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(0),
+          child: Container(color: Colors.black12, height: 1),
+        ),
+      ),
       body: Padding(
-        // ignore: prefer_const_constructors
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
         child: navigationShell,
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0),
-        child: CustomBottomNavigationBar(navigationShell: navigationShell),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        navigationShell: navigationShell,
       ),
     );
   }

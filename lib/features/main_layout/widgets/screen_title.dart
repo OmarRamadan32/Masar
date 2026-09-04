@@ -24,7 +24,7 @@ class ScreenTitle extends StatelessWidget {
           child: const Icon(
             IconsaxPlusBold.additem,
             color: AppColors.textPrimaryColor,
-            size: 20,
+            size: 24,
           ),
         ),
         AppSizes.w20,
@@ -37,7 +37,7 @@ class ScreenTitle extends StatelessWidget {
           child: const Icon(
             IconsaxPlusBold.mouse_square,
             color: AppColors.textPrimaryColor,
-            size: 20,
+            size: 24,
           ),
         ),
       ],
