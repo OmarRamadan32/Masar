@@ -24,8 +24,8 @@ class BottomNavBarItem extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: AnimatedContainer(
-          duration: Duration(milliseconds: isActive ? 250 : 0),
-          padding: EdgeInsets.symmetric(horizontal: isActive ? 20 : 0),
+          duration: Duration(milliseconds: isActive ? 500 : 0),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
             borderRadius: AppSizes.r16,
             color: isActive ? AppColors.primaryContainer : Colors.transparent,
@@ -34,7 +34,7 @@ class BottomNavBarItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AnimatedSwitcher(
-                duration: const Duration(milliseconds: 250),
+                duration: const Duration(milliseconds: 500),
                 transitionBuilder: (Widget child, Animation<double> animation) {
                   return ScaleTransition(
                     scale: animation,
@@ -43,7 +43,7 @@ class BottomNavBarItem extends StatelessWidget {
                 },
                 child: Icon(
                   icon,
-                  size: isActive == true ? 26 : 24,
+                  size: 24,
                   key: ValueKey<bool>(isActive),
                   color: isActive
                       ? AppColors.primaryColor
@@ -57,7 +57,6 @@ class BottomNavBarItem extends StatelessWidget {
                     ? AppStyles.secondaryMedium13
                     : AppStyles.secondaryMedium13.copyWith(
                         color: AppColors.inactiveBottomNavItemColor,
-                        fontSize: 12,
                       ),
               ),
             ],
