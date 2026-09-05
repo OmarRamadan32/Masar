@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/features/main_layout/views/main_view.dart';
 import 'package:masar/features/notes/presentation/views/notes_screen.dart';
+import 'package:masar/features/tasks/presentation/views/tasks_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -35,7 +36,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.tasks,
-              builder: (context, state) => const Center(child: Text("1")),
+              builder: (context, state) => const TasksScreen()
             ),
           ],
         ),
