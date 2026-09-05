@@ -11,7 +11,7 @@ class NotesScreen extends StatelessWidget {
     return const Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        ScreenTitle(),
+        ScreenTitle(title: "الملاحظات"),
         AppSizes.h10,
         Expanded(child: NotesGridView()),
       ],

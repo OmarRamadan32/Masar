@@ -5,15 +5,16 @@ import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
 
 class ScreenTitle extends StatelessWidget {
-  const new({super.key});
+  const new({super.key, required this.title,});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Expanded(
-          child: Text("الملاحظات", style: AppStyles.secondaryBold26),
+         Expanded(
+          child: Text(title, style: AppStyles.secondaryBold26),
         ),
         Container(
           padding: const EdgeInsets.all(6),

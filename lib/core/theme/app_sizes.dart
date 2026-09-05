@@ -36,5 +36,5 @@ abstract class AppSizes {
   static final BorderRadius r16 = BorderRadius.circular(s16);
   static final BorderRadius r20 = BorderRadius.circular(s20);
   static final BorderRadius r24 = BorderRadius.circular(s24);
-  static final BorderRadius r30 = BorderRadius.circular(30.0);
+  static  BorderRadius r30 = BorderRadius.circular(30.0);
 }
