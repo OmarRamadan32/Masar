@@ -18,40 +18,42 @@ class BottomNavBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: GestureDetector(
-        onTap: onTap,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedSwitcher(
-              duration: const Duration(milliseconds: 500),
-              transitionBuilder: (Widget child, Animation<double> animation) {
-                return ScaleTransition(
-                  scale: animation,
-                  child: ScaleTransition(scale: animation, child: child),
-                );
-              },
-              child: Icon(
-                icon,
-                size: 24,
-                key: ValueKey<bool>(isActive),
-                color: isActive
-                    ? AppColors.primaryColor
-                    : AppColors.inactiveBottomNavItemColor,
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: GestureDetector(
+          onTap: onTap,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 500),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return ScaleTransition(
+                    scale: animation,
+                    child: ScaleTransition(scale: animation, child: child),
+                  );
+                },
+                child: Icon(
+                  icon,
+                  size: 24,
+                  key: ValueKey<bool>(isActive),
+                  color: isActive
+                      ? AppColors.primaryColor
+                      : AppColors.inactiveBottomNavItemColor,
+                ),
               ),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              title,
-              style: isActive == true
-                  ? AppStyles.secondaryMedium13
-                  : AppStyles.secondaryMedium13.copyWith(
-                      color: AppColors.inactiveBottomNavItemColor,
-                    ),
-            ),
-          ],
+              const SizedBox(height: 3),
+              Text(
+                title,
+                style: isActive == true
+                    ? AppStyles.secondaryMedium13
+                    : AppStyles.secondaryMedium13.copyWith(
+                        color: AppColors.inactiveBottomNavItemColor,
+                      ),
+              ),
+            ],
+          ),
         ),
       ),
     );
