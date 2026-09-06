@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:masar/core/routing/routes.dart';
@@ -20,11 +19,11 @@ final appRouter = GoRouter(
   routes: [
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
-          MainScreen(navigationShell: navigationShell,
-          ),
+          MainScreen(navigationShell: navigationShell),
       branches: [
         // --Notes branch
         StatefulShellBranch(
+          initialLocation: AppRoutes.notes,
           routes: [
             GoRoute(
               path: AppRoutes.notes,
@@ -34,15 +33,17 @@ final appRouter = GoRouter(
         ),
         // --Tasks branch
         StatefulShellBranch(
+          initialLocation: AppRoutes.tasks,
           routes: [
             GoRoute(
               path: AppRoutes.tasks,
-              builder: (context, state) => const TasksScreen()
+              builder: (context, state) => const TasksScreen(),
             ),
           ],
         ),
         // --Categories branch
         StatefulShellBranch(
+          initialLocation: AppRoutes.categories,
           routes: [
             GoRoute(
               path: AppRoutes.categories,
