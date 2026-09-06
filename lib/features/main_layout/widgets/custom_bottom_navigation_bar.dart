@@ -22,7 +22,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
     final navItems = [
       (icon: IconsaxPlusBold.note_21, title: 'الملاحظات'),
       (icon: IconsaxPlusBold.task_square, title: 'المهام'),
-      (icon: IconsaxPlusBold.category_2, title: 'الفئات'),
+      (icon: IconsaxPlusBold.category, title: 'الفئات'),
       (icon: IconsaxPlusBold.setting, title: 'الإعدادات'),
     ];
 

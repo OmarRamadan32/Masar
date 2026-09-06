@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/features/categories/presentation/widgets/categories_tabs_row.dart';
 import 'package:masar/features/categories/presentation/widgets/category_view_switcher.dart';
+import 'package:masar/features/main_layout/widgets/screen_title.dart';
 import 'package:masar/features/notes/presentation/widgets/notes_grid_view.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -11,6 +12,7 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
+        ScreenTitle(title: "الفئات"),
         AppSizes.h10,
         CategoriesTabsRow(),
         AppSizes.h20,
