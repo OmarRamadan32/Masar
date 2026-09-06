@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/features/main_layout/widgets/screen_title.dart';
-import 'package:masar/features/tasks/presentation/widgets/task_items_list_view.dart';
+import 'package:masar/features/tasks/presentation/widgets/tasks_list_view.dart';
 import 'package:masar/features/tasks/presentation/widgets/tasks_overview_section.dart';
 import 'package:masar/features/tasks/presentation/widgets/today_tasks_progress_card.dart';
 
@@ -18,7 +18,7 @@ class TasksScreen extends StatelessWidget {
         AppSizes.h10,
         TodayTasksProgressCard(),
         AppSizes.h10,
-        Expanded(child: TaskItemsListView()),
+        Expanded(child: TasksListView()),
       ],
     );
   }

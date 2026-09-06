@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:masar/core/routing/routes.dart';
+import 'package:masar/features/categories/presentation/views/categories_screen.dart';
 import 'package:masar/features/main_layout/views/main_view.dart';
 import 'package:masar/features/notes/presentation/views/notes_screen.dart';
 import 'package:masar/features/tasks/presentation/views/tasks_screen.dart';
@@ -45,7 +46,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.categories,
-              builder: (context, state) => const Center(child: Text("2")),
+              builder: (context, state) => const CategoriesScreen(),
             ),
           ],
         ),
