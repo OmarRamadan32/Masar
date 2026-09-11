@@ -15,6 +15,7 @@ class Masar extends StatelessWidget {
     return MaterialApp.router(
       title: 'مسار',
       theme: AppThemes.lightTheme,
+      
       themeMode: ThemeMode.light,
 
       debugShowCheckedModeBanner: false,

@@ -4,6 +4,7 @@ import 'package:masar/core/routing/routes.dart';
 import 'package:masar/features/categories/presentation/views/categories_screen.dart';
 import 'package:masar/features/main_layout/views/main_view.dart';
 import 'package:masar/features/notes/presentation/views/notes_screen.dart';
+import 'package:masar/features/settings/presentation/views/settings_screen.dart';
 import 'package:masar/features/tasks/presentation/views/tasks_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -56,7 +57,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.settings,
-              builder: (context, state) => const Center(child: Text("3")),
+              builder: (context, state) => const SettingsScreen(),
             ),
           ],
         ),
