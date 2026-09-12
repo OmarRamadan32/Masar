@@ -9,20 +9,12 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("مسار"),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(0),
-          child: Container(color: Colors.black12, height: 1),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-        child: navigationShell,
-      ),
+      body: SafeArea(child: navigationShell),
       bottomNavigationBar: CustomBottomNavigationBar(
         navigationShell: navigationShell,
       ),
     );
   }
 }
+
+
