@@ -20,10 +20,16 @@ class AppThemes {
     shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(16)),
   );
   //------------
-  static final InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
+  static final InputDecorationTheme inputDecorationTheme = const InputDecorationTheme(
     filled: false,
     fillColor: AppColors.surfaceSecondaryColor,
-    border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+              border: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+
+    
   );
 
   static final appBarTheme = const AppBarTheme(

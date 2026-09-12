@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:go_router/go_router.dart';
+import 'package:masar/core/routing/routes.dart';
 import 'package:masar/features/notes/presentation/widgets/note_card.dart';
 
 class NotesGridView extends StatelessWidget {
@@ -15,12 +17,15 @@ class NotesGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.count(
-      crossAxisCount: 2, 
-      mainAxisSpacing: 10, 
-      crossAxisSpacing: 10, 
+      crossAxisCount: 2,
+      mainAxisSpacing: 10,
+      crossAxisSpacing: 10,
       itemCount: texts.length,
       itemBuilder: (context, index) {
-        return NoteCard(text: texts[index]);
+        return GestureDetector(
+          onTap: () => context.push(AppRoutes.note),
+          child: NoteCard(text: texts[index]),
+        );
       },
     );
   }

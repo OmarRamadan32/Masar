@@ -8,4 +8,11 @@ abstract class AppRoutes {
   static const categories = '/categories';
   // --Settings branch
   static const settings = '/settings';
+
+  static const List<String> mainRoutes = [
+    notes,
+    tasks,
+    categories,
+    settings,
+  ];
 }

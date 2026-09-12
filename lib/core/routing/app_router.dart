@@ -31,7 +31,7 @@ final appRouter = GoRouter(
               path: AppRoutes.notes,
               builder: (context, state) => const NotesScreen(),
             ),
-            GoRoute(
+                GoRoute(
               path: AppRoutes.note,
               builder: (context, state) => const NoteScreen(),
             ),
@@ -68,5 +68,6 @@ final appRouter = GoRouter(
         ),
       ],
     ),
+
   ],
 );
