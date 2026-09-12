@@ -3,17 +3,21 @@ import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/widgets/custom_app_bar.dart';
 
 class CustomScreen extends StatelessWidget {
-  const new({super.key, required this.canPop, required this.child});
+  const new({
+    super.key,
+    required this.canPop,
+    required this.child,
+    this.action,
+  });
   final bool canPop;
   final Widget child;
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomAppbar(canPop: canPop),
+        CustomAppbar(canPop: canPop, action: action),
         canPop != true ? AppSizes.h10 : const SizedBox.shrink(),
         Expanded(
           child: Padding(
