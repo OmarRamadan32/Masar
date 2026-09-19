@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
+import 'package:masar/core/theme/app_styles.dart';
 
 class CategoryViewSwitcherItem extends StatelessWidget {
   const new({super.key, required this.title, required this.isSelected});
@@ -19,7 +19,12 @@ class CategoryViewSwitcherItem extends StatelessWidget {
             : AppColors.cardsColor,
         borderRadius: AppSizes.r16,
       ),
-      child: Text(title),
+      child: Text(
+        title,
+        style: AppStyles.primaryRegular13.copyWith(
+          fontWeight: isSelected ? FontWeight.bold : null,
+        ),
+      ),
     );
   }
 }

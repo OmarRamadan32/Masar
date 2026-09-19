@@ -14,7 +14,7 @@ class SettingItemDetails extends StatelessWidget {
         Text(title, style: AppStyles.primaryBold16),
         Text(
           subtitle,
-          style: AppStyles.secondaryRegular11.copyWith(fontSize: 12),
+          style: AppStyles.secondaryRegular11.copyWith(fontSize: 11),
         ),
       ],
     );

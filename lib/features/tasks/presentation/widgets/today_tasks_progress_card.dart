@@ -34,7 +34,6 @@ class TodayTasksProgressCard extends StatelessWidget {
                 child: Text(
                   "لديك 4 مهام غير مكتملة",
                   style: AppStyles.primaryBold20.copyWith(
-                    fontSize: 24,
                     color: const Color(0xFFE1FFEC),
                   ),
                 ),
@@ -50,7 +49,7 @@ class TodayTasksProgressCard extends StatelessWidget {
               children: [
                 const Icon(
                   IconsaxPlusBold.flash_1,
-                  size: 20,
+                  size: 18,
                   color: Color(0xFFE1FFEC),
                 ),
                 AppSizes.w4,

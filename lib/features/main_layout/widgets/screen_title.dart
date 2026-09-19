@@ -5,7 +5,7 @@ import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
 
 class ScreenTitle extends StatelessWidget {
-  const new({super.key, required this.title,});
+  const new({super.key, required this.title});
   final String title;
 
   @override
@@ -13,9 +13,7 @@ class ScreenTitle extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-         Expanded(
-          child: Text(title, style: AppStyles.secondaryBold26),
-        ),
+        Expanded(child: Text(title, style: AppStyles.secondaryBold26)),
         Container(
           padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(
@@ -25,7 +23,7 @@ class ScreenTitle extends StatelessWidget {
           child: const Icon(
             IconsaxPlusBold.additem,
             color: AppColors.textPrimaryColor,
-            size: 24,
+            size: 22,
           ),
         ),
         AppSizes.w20,
@@ -38,7 +36,7 @@ class ScreenTitle extends StatelessWidget {
           child: const Icon(
             IconsaxPlusBold.mouse_square,
             color: AppColors.textPrimaryColor,
-            size: 24,
+            size: 22,
           ),
         ),
       ],

@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:masar/core/theme/app_colors.dart';
+import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/features/categories/presentation/widgets/category_view_switcher_item.dart';
 
 class CategoryViewSwitcher extends StatefulWidget {
@@ -19,7 +19,10 @@ class _CategoryViewSwitcherState extends State<CategoryViewSwitcher> {
     return Container(
       padding: const EdgeInsets.all(6),
       width: double.infinity,
-      decoration: const BoxDecoration(color: AppColors.cardsColor),
+      decoration: BoxDecoration(
+        color: AppColors.cardsColor,
+        borderRadius: AppSizes.r16,
+      ),
       child: Row(
         children: List.generate(
           2,
