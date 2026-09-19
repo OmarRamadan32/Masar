@@ -1,127 +1,127 @@
 import 'package:flutter/material.dart';
-import 'package:masar/core/theme/app_colors.dart';
-
 import 'package:masar/core/constants/app_constants.dart';
+import 'package:masar/core/theme/app_colors.dart';
+import 'package:masar/core/utils/size_config.dart';
 
 abstract class AppStyles {
   //-- Secondary Font --
-  static const TextStyle secondaryBold26 = TextStyle(
-    fontSize: 25,
+  static TextStyle secondaryBold26 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(25),
     fontFamily: AppFonts.secondaryFontFamily,
     color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle secondaryBold24 = TextStyle(
-    fontSize: 23,
+  static TextStyle secondaryBold24 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(23),
     fontFamily: AppFonts.secondaryFontFamily,
     color: AppColors.primaryColor,
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle secondaryBold20 = TextStyle(
-    fontSize: 19,
+  static TextStyle secondaryBold20 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(19),
     fontFamily: AppFonts.secondaryFontFamily,
     color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle secondaryMedium18 = TextStyle(
-    fontSize: 17,
+  static TextStyle secondaryMedium18 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(17),
     fontFamily: AppFonts.secondaryFontFamily,
     color: AppColors.textPrimaryColor,
-    fontWeight: FontWeight(500),
+    fontWeight: const FontWeight(500),
   );
 
-  static const TextStyle secondaryMedium14 = TextStyle(
-    fontSize: 13,
+  static TextStyle secondaryMedium14 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(13),
     fontFamily: AppFonts.secondaryFontFamily,
     color: AppColors.primaryColor,
-    fontWeight: FontWeight(500),
+    fontWeight: const FontWeight(500),
   );
 
-  static const TextStyle secondaryMedium13 = TextStyle(
-    fontSize: 12,
+  static TextStyle secondaryMedium13 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(12),
     fontFamily: AppFonts.secondaryFontFamily,
     color: AppColors.primaryColor,
-    fontWeight: FontWeight(500),
+    fontWeight: const FontWeight(500),
   );
 
-  static const TextStyle secondaryMedium12 = TextStyle(
-    fontSize: 11,
+  static TextStyle secondaryMedium12 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(11),
     fontFamily: AppFonts.secondaryFontFamily,
     color: AppColors.inactiveBottomNavItemColor,
-    fontWeight: FontWeight(500),
+    fontWeight: const FontWeight(500),
   );
 
-  static const TextStyle secondaryRegular11 = TextStyle(
-    fontSize: 10,
+  static TextStyle secondaryRegular11 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(10),
     fontFamily: AppFonts.secondaryFontFamily,
     color: AppColors.textSecondaryColor,
-    fontWeight: FontWeight(400),
+    fontWeight: const FontWeight(400),
   );
-  
+
   // -- Primary Font --
-  static const TextStyle primaryBold16 = TextStyle(
-    fontSize: 15,
+  static TextStyle primaryBold16 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(15),
     fontFamily: AppFonts.primaryFontFamily,
     color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle primaryBold14 = TextStyle(
-    fontSize: 13,
+  static TextStyle primaryBold14 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(13),
     fontFamily: AppFonts.primaryFontFamily,
     color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle primaryRegular12 = TextStyle(
-    fontSize: 11,
+  static TextStyle primaryRegular12 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(11),
     fontFamily: AppFonts.primaryFontFamily,
     color: AppColors.textSecondaryColor,
-    fontWeight: FontWeight(400),
+    fontWeight: const FontWeight(400),
   );
 
-  static const TextStyle primaryRegular13 = TextStyle(
-    fontSize: 12,
+  static TextStyle primaryRegular13 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(12),
     fontFamily: AppFonts.primaryFontFamily,
     color: AppColors.textSecondaryColor,
-    fontWeight: FontWeight(400),
+    fontWeight: const FontWeight(400),
   );
 
-  static const TextStyle primaryBold13 = TextStyle(
-    fontSize: 12,
+  static TextStyle primaryBold13 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(12),
     fontFamily: AppFonts.primaryFontFamily,
     color: AppColors.textSecondaryColor,
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle primaryRegular11 = TextStyle(
-    fontSize: 10,
+  static TextStyle primaryRegular11 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(10),
     fontFamily: AppFonts.primaryFontFamily,
     color: AppColors.surfacePrimaryColor,
-    fontWeight: FontWeight(400),
+    fontWeight: const FontWeight(400),
   );
 
-  static const TextStyle primaryRegular14 = TextStyle(
-    fontSize: 13,
+  static TextStyle primaryRegular14 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(13),
     fontFamily: AppFonts.primaryFontFamily,
     color: AppColors.textSecondaryColor,
-    fontWeight: FontWeight(400),
+    fontWeight: const FontWeight(400),
   );
 
-  static const TextStyle primaryBold20 = TextStyle(
-    fontSize: 19,
+  static TextStyle primaryBold20 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(19),
     fontFamily: AppFonts.primaryFontFamily,
     color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle primaryRegular16 = TextStyle(
-    fontSize: 15,
+  static TextStyle primaryRegular16 = TextStyle(
+    fontSize: ResponsizeSizer.getResponsiveFontSize(15),
     fontFamily: AppFonts.primaryFontFamily,
     color: AppColors.textSecondary75Color,
-    fontWeight: FontWeight(400),
+    fontWeight: const FontWeight(400),
   );
 }

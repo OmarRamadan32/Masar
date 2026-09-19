@@ -25,7 +25,7 @@ class CustomAppbar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text("مسار", style: AppStyles.secondaryBold24),
+                Text("مسار", style: AppStyles.secondaryBold24),
                 Row(
                   children: [
                     action ?? const SizedBox.shrink(),

@@ -32,7 +32,7 @@ class AppThemes {
     
   );
 
-  static final appBarTheme = const AppBarTheme(
+  static final appBarTheme = AppBarTheme(
     titleTextStyle: AppStyles.secondaryBold24,
     elevation: 0,
     backgroundColor: AppColors.surfacePrimaryColor,

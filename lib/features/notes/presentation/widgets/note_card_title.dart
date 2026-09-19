@@ -6,6 +6,6 @@ class NoteCardTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("خطة سفر يناير", style: AppStyles.primaryBold16);
+    return Text("خطة سفر يناير", style: AppStyles.primaryBold16);
   }
 }

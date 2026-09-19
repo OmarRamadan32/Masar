@@ -10,16 +10,16 @@ class TaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScreen(
+    return CustomScreen(
       canPop: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("عنوان المهمة", style: AppStyles.primaryBold20),
           AppSizes.h16,
-          TaskOverviewSectionOne(),
+          const TaskOverviewSectionOne(),
           AppSizes.h10,
-          TaskOverviewSectionTwo(),
+          const TaskOverviewSectionTwo(),
           AppSizes.h20,
           Text("تفاصيل المهمة", style: AppStyles.primaryRegular16),
         ],

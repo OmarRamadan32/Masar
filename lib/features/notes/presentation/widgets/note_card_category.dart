@@ -14,7 +14,7 @@ class NoteCardCategory extends StatelessWidget {
         color: AppColors.primaryColor,
         borderRadius: AppSizes.r8,
       ),
-      child: const Text("شخصي", style: AppStyles.primaryRegular11),
+      child: Text("شخصي", style: AppStyles.primaryRegular11),
     );
   }
 }
