@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/features/tasks/presentation/widgets/task_item_details.dart';
@@ -43,6 +46,13 @@ class _TaskItemState extends State<TaskItem> {
                 AppSizes.h4,
                 const TaskItemDetails(),
               ],
+            ),
+            const Spacer(),
+            GestureDetector(
+              onTap: () {
+                context.push(AppRoutes.task);
+              },
+              child: const Icon(IconsaxPlusLinear.arrow_left_1, size: 20),
             ),
           ],
         ),

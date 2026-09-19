@@ -6,6 +6,7 @@ import 'package:masar/features/main_layout/views/main_view.dart';
 import 'package:masar/features/notes/presentation/views/note_screen.dart';
 import 'package:masar/features/notes/presentation/views/notes_screen.dart';
 import 'package:masar/features/settings/presentation/views/settings_screen.dart';
+import 'package:masar/features/tasks/presentation/views/task_screen.dart';
 import 'package:masar/features/tasks/presentation/views/tasks_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -45,6 +46,7 @@ final appRouter = GoRouter(
               path: AppRoutes.tasks,
               builder: (context, state) => const TasksScreen(),
             ),
+            GoRoute(path: AppRoutes.task, builder: (context, state) => const TaskScreen()),
           ],
         ),
         // --Categories branch

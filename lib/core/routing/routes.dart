@@ -4,15 +4,10 @@ abstract class AppRoutes {
   static const note = '/note';
   // --Tasks branch
   static const tasks = '/tasks';
+  static const task = '/task';
   // --Categories branch
   static const categories = '/categories';
   // --Settings branch
   static const settings = '/settings';
 
-  static const List<String> mainRoutes = [
-    notes,
-    tasks,
-    categories,
-    settings,
-  ];
 }
