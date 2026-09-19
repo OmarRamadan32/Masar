@@ -39,7 +39,7 @@ class _TaskItemState extends State<TaskItem> {
           children: [
             TaskItemCheckbox(isCompleted: isCompleted),
             AppSizes.w10,
-            Column(
+            Column(    
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TaskItemTitle(isCompleted: isCompleted),
