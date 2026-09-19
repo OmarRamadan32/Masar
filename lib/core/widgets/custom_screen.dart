@@ -16,6 +16,7 @@ class CustomScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomAppbar(canPop: canPop, action: action),
         canPop != true ? AppSizes.h10 : const SizedBox.shrink(),

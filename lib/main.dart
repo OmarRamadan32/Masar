@@ -15,7 +15,7 @@ class Masar extends StatelessWidget {
     return MaterialApp.router(
       title: 'مسار',
       theme: AppThemes.lightTheme,
-      
+
       themeMode: ThemeMode.light,
 
       debugShowCheckedModeBanner: false,
@@ -25,11 +25,13 @@ class Masar extends StatelessWidget {
         // final mediaQueryData = MediaQuery.of(context);
         return Directionality(
           textDirection: TextDirection.rtl,
-          child: child!,
+          child: MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: TextScaler.noScaling),
+            child: child!,
+          ),
         );
       },
     );
   }
 }
-
-
