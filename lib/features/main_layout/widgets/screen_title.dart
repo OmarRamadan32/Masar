@@ -10,7 +10,7 @@ class ScreenTitle extends StatelessWidget {
     super.key,
     required this.title,
     this.addItemScreenPath,
-   required this.hasOptions,
+    required this.hasOptions,
   });
   final String title;
   final String? addItemScreenPath;
@@ -27,18 +27,18 @@ class ScreenTitle extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () => context.push(addItemScreenPath!),
-                    child:  Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      borderRadius: AppSizes.r8,
-                      color: AppColors.cardsColor,
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        borderRadius: AppSizes.r8,
+                        color: AppColors.cardsColor,
+                      ),
+                      child: const Icon(
+                        IconsaxPlusBold.add,
+                        color: AppColors.textPrimaryColor,
+                        size: 22,
+                      ),
                     ),
-                    child: const Icon(
-                      IconsaxPlusBold.additem,
-                      color: AppColors.textPrimaryColor,
-                      size: 22,
-                    ),
-                  ),
                   ),
                   AppSizes.w20,
                   Container(
