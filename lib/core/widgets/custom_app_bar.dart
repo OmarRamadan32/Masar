@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
 
 class CustomAppbar extends StatelessWidget {
@@ -29,7 +28,7 @@ class CustomAppbar extends StatelessWidget {
                 Row(
                   children: [
                     action ?? const SizedBox.shrink(),
-                    action != null ? AppSizes.w10 : const SizedBox.shrink(),
+                    // action != null ? AppSizes.w4 : const SizedBox.shrink(),
                     canPop
                         ? IconButton(
                             onPressed: () => context.pop(),

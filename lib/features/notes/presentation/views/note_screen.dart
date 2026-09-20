@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/core/widgets/custom_text_field.dart';
@@ -8,9 +9,14 @@ class NoteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScreen(
+    return CustomScreen(
+      // this icon will only be shown when the user Edit the note
+      action: IconButton(
+        onPressed: () {},
+        icon: const Icon(Icons.check, color: AppColors.primaryColor),
+      ),
       canPop: true,
-      child: Column(
+      child: const Column(
         children: [
           CustomTextField(isMultiLine: false, initialValue: "عنوان الملاحظة"),
           AppSizes.h10,
