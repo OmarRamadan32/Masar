@@ -2,6 +2,7 @@ abstract class AppRoutes {
   // --Notes branch
   static const notes = '/';
   static const note = '/note';
+  static const addNote = '/addNote';
   // --Tasks branch
   static const tasks = '/tasks';
   static const task = '/task';

@@ -15,7 +15,7 @@ class CategoriesScreen extends StatelessWidget {
       canPop: false,
       child: Column(
         children: [
-          ScreenTitle(title: "الفئات"),
+          ScreenTitle(title: "الفئات", hasOptions: true),
           AppSizes.h10,
           CategoriesTabsRow(),
           AppSizes.h20,

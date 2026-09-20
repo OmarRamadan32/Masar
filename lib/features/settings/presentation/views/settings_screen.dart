@@ -15,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
       canPop: false,
       child: Column(
         children: [
-          ScreenTitle(title: "الاعدادات"),
+          ScreenTitle(title: "الاعدادات", hasOptions: false),
           AppSizes.h10,
           SettingsNotificationSection(),
           AppSizes.h10,
