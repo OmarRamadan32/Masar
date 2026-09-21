@@ -24,10 +24,11 @@ class NoteScreen extends StatelessWidget {
             initialValue: "عنوان الملاحظة",
           ),
           AppSizes.h10,
-          CustomTextField(
-            initialValue: "الملاحظة",
-            type: CustomTextFieldType.multiLineTextField,
-            
+          Expanded(
+            child: CustomTextField(
+              initialValue: "الملاحظة",
+              type: CustomTextFieldType.infinityTextField,
+            ),
           ),
         ],
       ),
