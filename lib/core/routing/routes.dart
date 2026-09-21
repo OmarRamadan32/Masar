@@ -9,6 +9,7 @@ abstract class AppRoutes {
   static const addTask = '/addTask';
   // --Categories branch
   static const categories = '/categories';
+  static const addCategory = '/addCategory';
   // --Settings branch
   static const settings = '/settings';
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:masar/core/routing/routes.dart';
+import 'package:masar/features/categories/presentation/views/add_category_screen.dart';
 import 'package:masar/features/categories/presentation/views/categories_screen.dart';
 import 'package:masar/features/main_layout/views/main_view.dart';
 import 'package:masar/features/notes/presentation/views/add_note_screen.dart';
@@ -63,6 +64,10 @@ final appRouter = GoRouter(
             GoRoute(
               path: AppRoutes.categories,
               builder: (context, state) => const CategoriesScreen(),
+            ),
+              GoRoute(
+              path: AppRoutes.addCategory,
+              builder: (context, state) => const AddCategoryScreen(),
             ),
           ],
         ),

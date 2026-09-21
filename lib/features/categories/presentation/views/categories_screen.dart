@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/features/categories/presentation/widgets/categories_tabs_row.dart';
@@ -15,7 +16,11 @@ class CategoriesScreen extends StatelessWidget {
       canPop: false,
       child: Column(
         children: [
-          ScreenTitle(title: "الفئات", hasOptions: true),
+          ScreenTitle(
+            title: "الفئات",
+            hasOptions: true,
+            addItemScreenPath: AppRoutes.addCategory,
+          ),
           AppSizes.h10,
           CategoriesTabsRow(),
           AppSizes.h20,
