@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:masar/core/constants/app_constants.dart';
+import 'package:masar/core/constants/app_fonts.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_styles.dart';
 

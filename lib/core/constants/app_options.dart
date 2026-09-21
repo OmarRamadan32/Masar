@@ -1,11 +1,3 @@
-abstract class AppFonts {
-  static const String secondaryFontFamily = 'Tajawal';
-  static const String primaryFontFamily = 'Almarai';
-
-
-  
-}
-
 abstract class AppOptions {
     //---
   static const List<String> categoriesOptions = ['الدراسة', 'شخصي', 'العمل', 'المواعيد'];
