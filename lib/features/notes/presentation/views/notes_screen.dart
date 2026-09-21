@@ -10,12 +10,14 @@ class NotesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const  CustomScreen(
+    return const CustomScreen(
       canPop: false,
       child: Column(
         children: [
-          ScreenTitle(title: "الملاحظات", hasOptions: true,
-          addItemScreenPath: AppRoutes.addNote,
+          ScreenTitle(
+            title: "الملاحظات",
+            hasOptions: true,
+            addItemScreenPath: AppRoutes.addNote,
           ),
           AppSizes.h10,
           Expanded(child: NotesGridView()),

@@ -9,10 +9,12 @@ class CustomTextField extends StatefulWidget {
     this.initialValue,
     required this.isMultiLine,
     this.maxLines,
+    this.hintText,
   });
   final String? initialValue;
   final bool isMultiLine;
   final int? maxLines;
+  final String? hintText;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -46,6 +48,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderRadius: AppSizes.r12,
           ),
           child: TextField(
+            decoration: InputDecoration(hintText: widget.hintText),
             controller: controller,
             style: AppStyles.primaryRegular16,
             maxLines: widget.isMultiLine ? 1000000000 : 1,
@@ -66,6 +69,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: AppSizes.r12,
         ),
         child: TextField(
+          decoration: InputDecoration(
+            hintText: widget.hintText,
+            hintStyle: AppStyles.primaryRegular16,
+          ),
           controller: controller,
           maxLines: widget.maxLines,
           cursorColor: AppColors.primaryColor,

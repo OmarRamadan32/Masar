@@ -2,29 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
-import 'package:masar/core/widgets/option_widget.dart';
+import 'package:masar/features/categories/presentation/widgets/color_widget.dart';
 
-class OptionsPicker extends StatefulWidget {
-  const new({
-    super.key,
-    this.cutomOption,
-    required this.title,
-    required this.optionsList,
-  });
-  final Widget? cutomOption;
-  final String title;
-  final List<String> optionsList;
+class ColorsPickerWidget extends StatefulWidget {
+  const new({super.key});
+  static const List<Color> colors = [
+    Colors.red,
+    Color(0XFF50C878),
+    Colors.purple,
+    Color(0XFF4A90E2),
+    Colors.yellow,
+    Colors.orange,
+    Color(0xffE84393),
+  ];
 
   @override
-  State<OptionsPicker> createState() => _OptionsPickerState();
+  State<ColorsPickerWidget> createState() => _ColorsPickerWidgetState();
 }
 
-class _OptionsPickerState extends State<OptionsPicker> {
-  int selectedIndex = 100;
+class _ColorsPickerWidgetState extends State<ColorsPickerWidget> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 100,
       width: double.infinity,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -34,7 +34,7 @@ class _OptionsPickerState extends State<OptionsPicker> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.title, style: AppStyles.secondaryMedium18),
+          Text("اللون", style: AppStyles.secondaryMedium18),
           AppSizes.h10,
           SizedBox(
             height: 30,
@@ -43,23 +43,18 @@ class _OptionsPickerState extends State<OptionsPicker> {
                 Expanded(
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: widget.optionsList.length,
+                    itemCount: ColorsPickerWidget.colors.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        child: OptionWidget(
-                          title: widget.optionsList[index],
-                          isActive: index == selectedIndex,
+                        onTap: () => setState(() => selectedIndex = index),
+                        child: ColorWidget(
+                          isSelected: index == selectedIndex,
+                          color: ColorsPickerWidget.colors[index],
                         ),
                       );
                     },
                   ),
                 ),
-                widget.cutomOption ?? const SizedBox(),
               ],
             ),
           ),

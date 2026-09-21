@@ -15,7 +15,7 @@ class TasksScreen extends StatelessWidget {
       canPop: false,
       child: Column(
         children: [
-          ScreenTitle(title: "المهام", hasOptions: true),
+          ScreenTitle(title: "المهام", hasOptions: true,addItemScreenPath: "/addTask",),
           AppSizes.h10,
           TasksOverviewSection(),
           AppSizes.h10,
