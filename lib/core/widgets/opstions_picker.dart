@@ -59,7 +59,23 @@ class _OptionsPickerState extends State<OptionsPicker> {
                     },
                   ),
                 ),
-                widget.cutomOption ?? const SizedBox(),
+                widget.cutomOption != null
+                    ? Row(
+                        children: [
+                          const SizedBox(
+                            width: 1,
+                            child: Divider(
+                              thickness: 30,
+                              color: Color.fromARGB(101, 88, 96, 100),
+                              height: 30,
+                            ),
+                          ),
+                          AppSizes.w4,
+                          widget.cutomOption!,
+                        ],
+                      )
+                    : const SizedBox(),
+                // widget.cutomOption ?? const SizedBox(),
               ],
             ),
           ),
