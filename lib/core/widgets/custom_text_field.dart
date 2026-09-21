@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masar/core/constants/app_enums.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
@@ -7,14 +8,14 @@ class CustomTextField extends StatefulWidget {
   const new({
     super.key,
     this.initialValue,
-    required this.isMultiLine,
     this.maxLines,
     this.hintText,
+    required this.type,
   });
   final String? initialValue;
-  final bool isMultiLine;
   final int? maxLines;
   final String? hintText;
+  final CustomTextFieldType type;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -37,49 +38,42 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.isMultiLine) {
-      return Expanded(
-        child: Container(
-          alignment: Alignment.topRight,
-          padding: const EdgeInsets.all(10),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: AppColors.surfaceSecondaryColor,
-            borderRadius: AppSizes.r12,
-          ),
-          child: TextField(
-            decoration: InputDecoration(hintText: widget.hintText),
-            controller: controller,
-            style: AppStyles.primaryRegular16,
-            maxLines: widget.isMultiLine ? 1000000000 : 1,
-            cursorColor: AppColors.primaryColor,
-            keyboardType: widget.isMultiLine
-                ? TextInputType.multiline
-                : TextInputType.text,
-          ),
+    final isInfinity = widget.type == CustomTextFieldType.infinityTextField;
+    final isMultiLine = widget.type == CustomTextFieldType.multiLineTextField;
+    // set maxLines
+    final int? maxLines = isInfinity
+        ? null
+        : (isMultiLine ? (widget.maxLines ?? 5) : widget.maxLines);
+    // handle expands
+    final bool expands = isInfinity;
+    // set keyboardType
+    final TextInputType keyboardType = (isInfinity || isMultiLine)
+        ? TextInputType.multiline
+        : TextInputType.text;
+
+    Widget textFieldContent = Container(
+      alignment: Alignment.topRight,
+      padding: const EdgeInsets.all(10),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: AppColors.surfaceSecondaryColor,
+        borderRadius: AppSizes.r12,
+      ),
+      child: TextField(
+        controller: controller,
+        maxLines: maxLines,
+        expands: expands,
+        cursorColor: AppColors.primaryColor,
+        keyboardType: keyboardType,
+        style: AppStyles.primaryRegular16,
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          hintStyle: AppStyles.primaryRegular16,
+          border: InputBorder.none,
         ),
-      );
-    } else {
-      return Container(
-        alignment: Alignment.topRight,
-        padding: const EdgeInsets.all(10),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: AppColors.surfaceSecondaryColor,
-          borderRadius: AppSizes.r12,
-        ),
-        child: TextField(
-          decoration: InputDecoration(
-            hintText: widget.hintText,
-            hintStyle: AppStyles.primaryRegular16,
-          ),
-          controller: controller,
-          maxLines: widget.maxLines,
-          cursorColor: AppColors.primaryColor,
-          keyboardType: TextInputType.multiline,
-        ),
-      );
-    }
+      ),
+    );
+
+    return textFieldContent;
   }
 }
-

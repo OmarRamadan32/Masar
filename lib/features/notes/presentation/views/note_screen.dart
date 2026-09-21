@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masar/core/constants/app_enums.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
@@ -18,9 +19,16 @@ class NoteScreen extends StatelessWidget {
       canPop: true,
       child: const Column(
         children: [
-          CustomTextField(isMultiLine: false, initialValue: "عنوان الملاحظة"),
+          CustomTextField(
+            type: CustomTextFieldType.normalTextField,
+            initialValue: "عنوان الملاحظة",
+          ),
           AppSizes.h10,
-          CustomTextField(initialValue: "الملاحظة", isMultiLine: true),
+          CustomTextField(
+            initialValue: "الملاحظة",
+            type: CustomTextFieldType.multiLineTextField,
+            
+          ),
         ],
       ),
     );

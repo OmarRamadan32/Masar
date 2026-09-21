@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:masar/core/constants/app_enums.dart';
 import 'package:masar/core/constants/app_options.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/widgets/custom_button.dart';
@@ -16,44 +17,75 @@ class AddTaskScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScreen(
       canPop: true,
-      child: Column(
-        children: [
-          const ScreenTitle(title: "اضافة مهمة", hasOptions: false),
-          AppSizes.h10,
-          const CustomTextField(isMultiLine: false, hintText: "عنوان المهمة"),
-          AppSizes.h10,
-          const OptionsPicker(
-            title: "القسم",
-            optionsList: AppOptions.categoriesOptions,
+      child: CustomScrollView(
+        slivers: [
+          const SliverToBoxAdapter(
+            child: ScreenTitle(title: "اضافة مهمة", hasOptions: false),
           ),
-          AppSizes.h10,
-          const OptionsPicker(
-            title: "درجة الأولوية",
-            optionsList: AppOptions.priorityOptions,
-          ),
-          AppSizes.h10,
-          const OptionsPicker(
-            title: "عدد مرات التكرار",
-            optionsList: AppOptions.taskCount,
-            cutomOption: CustomOptionWidget(
-              title: "مخصص",
-              icon: IconsaxPlusBold.repeat_circle,
+          const SliverToBoxAdapter(child: AppSizes.h10),
+          const SliverToBoxAdapter(
+            child: CustomTextField(
+              type: CustomTextFieldType.normalTextField,
+              hintText: "عنوان المهمة",
             ),
           ),
-          AppSizes.h10,
-          const OptionsPicker(
-            title: "التكرار",
-            optionsList: AppOptions.taskRepeat,
-            cutomOption: CustomOptionWidget(
-              title: "مخصص",
-              icon: IconsaxPlusBold.calendar,
+          const SliverToBoxAdapter(child: AppSizes.h10),
+          const SliverToBoxAdapter(
+            child: OptionsPicker(
+              title: "القسم",
+              optionsList: AppOptions.categoriesOptions,
             ),
           ),
-          AppSizes.h10,
-          const CustomTextField(isMultiLine: true, hintText: "ملاحظات"),
-          AppSizes.h10,
-          CustomButton(title: "إتمام", onPress: () {}),
-          AppSizes.h10,
+          const SliverToBoxAdapter(child: AppSizes.h10),
+          const SliverToBoxAdapter(
+            child: OptionsPicker(
+              title: "درجة الأولوية",
+              optionsList: AppOptions.priorityOptions,
+            ),
+          ),
+          const SliverToBoxAdapter(child: AppSizes.h10),
+          const SliverToBoxAdapter(
+            child: OptionsPicker(
+              title: "عدد مرات التكرار",
+              optionsList: AppOptions.taskCount,
+              cutomOption: CustomOptionWidget(
+                title: "مخصص",
+                icon: IconsaxPlusBold.repeat_circle,
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(child: AppSizes.h10),
+          const SliverToBoxAdapter(
+            child: OptionsPicker(
+              title: "التكرار",
+              optionsList: AppOptions.taskRepeat,
+              cutomOption: CustomOptionWidget(
+                title: "مخصص",
+                icon: IconsaxPlusBold.calendar,
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(child: AppSizes.h10),
+
+          SliverFillRemaining(
+            hasScrollBody: false,
+            fillOverscroll: false,
+            child: Column(
+              children: [
+                const Expanded(
+                  child: CustomTextField(
+                    type: CustomTextFieldType.infinityTextField,
+                    hintText: "ملاحظات",
+                  ),
+                ),
+                AppSizes.h10,
+                CustomButton(title: "إتمام", onPress: () {}),
+                AppSizes.h10,
+              ],
+            ),
+          ),
+
+          const SliverToBoxAdapter(child: AppSizes.h10),
         ],
       ),
     );

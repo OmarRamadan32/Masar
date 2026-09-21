@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masar/core/constants/app_enums.dart';
 import 'package:masar/core/constants/app_options.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
@@ -23,14 +24,20 @@ class AddNoteScreen extends StatelessWidget {
         children: [
           ScreenTitle(title: "اضافة ملاحظة", hasOptions: false),
           AppSizes.h10,
-          CustomTextField(isMultiLine: false, initialValue: "عنوان الملاحظة"),
+          CustomTextField(
+            type: CustomTextFieldType.normalTextField,
+             initialValue: "عنوان الملاحظة"),
           AppSizes.h10,
           OptionsPicker(
             title: "القسم",
             optionsList: AppOptions.categoriesOptions,
           ),
           AppSizes.h10,
-          CustomTextField(initialValue: "الملاحظة", isMultiLine: true),
+          Expanded(
+            child: CustomTextField(initialValue: "الملاحظة",
+            type: CustomTextFieldType.infinityTextField,
+            ),
+          ),
         ],
       ),
     );
