@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/features/main_layout/widgets/screen_title.dart';
@@ -15,7 +16,11 @@ class TasksScreen extends StatelessWidget {
       canPop: false,
       child: Column(
         children: [
-          ScreenTitle(title: "المهام", hasOptions: true,addItemScreenPath: "/addTask",),
+          ScreenTitle(
+            title: "المهام",
+            hasOptions: true,
+            addItemScreenPath: AppRoutes.addTask,
+          ),
           AppSizes.h10,
           TasksOverviewSection(),
           AppSizes.h10,
