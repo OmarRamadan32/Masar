@@ -8,7 +8,7 @@ import 'package:masar/core/widgets/custom_option_widget.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/core/widgets/custom_text_field.dart';
 import 'package:masar/core/widgets/opstions_picker.dart';
-import 'package:masar/features/main_layout/widgets/screen_title.dart';
+import 'package:masar/core/widgets/screen_title.dart';
 
 class AddTaskScreen extends StatelessWidget {
   const new({super.key});

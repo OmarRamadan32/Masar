@@ -5,7 +5,7 @@ import 'package:masar/core/widgets/custom_button.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/core/widgets/custom_text_field.dart';
 import 'package:masar/features/categories/presentation/widgets/colors_picker_widget.dart';
-import 'package:masar/features/main_layout/widgets/screen_title.dart';
+import 'package:masar/core/widgets/screen_title.dart';
 
 class AddCategoryScreen extends StatelessWidget {
   const new({super.key});

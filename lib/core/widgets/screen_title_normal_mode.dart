@@ -5,7 +5,7 @@ import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
 
-class ScreenTitle extends StatelessWidget {
+class ScreenTitleNormalMode extends StatelessWidget {
   const new({
     super.key,
     required this.title,
@@ -41,16 +41,25 @@ class ScreenTitle extends StatelessWidget {
                     ),
                   ),
                   AppSizes.w20,
-                  Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      borderRadius: AppSizes.r8,
-                      color: AppColors.cardsColor,
-                    ),
-                    child: const Icon(
-                      IconsaxPlusBold.mouse_square,
-                      color: AppColors.textPrimaryColor,
-                      size: 22,
+                  GestureDetector(
+                    onTap: () {
+                      /*
+                       this will trigger select(Notes/Tasks) State inside the Select Cubit
+                       select(Notes/Tasks) State will change the ScreenTitle to ScreenTitleSelectMode
+                        
+                      */
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        borderRadius: AppSizes.r8,
+                        color: AppColors.cardsColor,
+                      ),
+                      child: const Icon(
+                        IconsaxPlusBold.mouse_square,
+                        color: AppColors.textPrimaryColor,
+                        size: 22,
+                      ),
                     ),
                   ),
                 ],

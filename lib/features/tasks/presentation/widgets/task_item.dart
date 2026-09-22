@@ -28,7 +28,6 @@ class _TaskItemState extends State<TaskItem> {
         });
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 10),
         width: double.infinity,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
@@ -39,7 +38,7 @@ class _TaskItemState extends State<TaskItem> {
           children: [
             TaskItemCheckbox(isCompleted: isCompleted),
             AppSizes.w10,
-            Column(    
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TaskItemTitle(isCompleted: isCompleted),

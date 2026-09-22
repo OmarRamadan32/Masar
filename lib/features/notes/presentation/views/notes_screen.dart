@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
-import 'package:masar/features/main_layout/widgets/screen_title.dart';
+import 'package:masar/core/widgets/screen_title.dart';
 import 'package:masar/features/notes/presentation/widgets/notes_grid_view.dart';
 
 class NotesScreen extends StatelessWidget {

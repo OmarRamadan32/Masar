@@ -15,7 +15,10 @@ class TasksListView extends StatelessWidget {
           onTap: () {
             context.push(AppRoutes.task);
           },
-          child: const TaskItem(),
+          child: const Padding(
+            padding: EdgeInsets.only(bottom: 8),
+            child: TaskItem(),
+          ),
         );
       },
     );
