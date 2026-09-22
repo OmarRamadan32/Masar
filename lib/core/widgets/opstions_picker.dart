@@ -10,17 +10,19 @@ class OptionsPicker extends StatefulWidget {
     this.cutomOption,
     required this.title,
     required this.optionsList,
+    this.titleIcon,
   });
   final Widget? cutomOption;
   final String title;
   final List<String> optionsList;
+  final IconData? titleIcon;
 
   @override
   State<OptionsPicker> createState() => _OptionsPickerState();
 }
 
 class _OptionsPickerState extends State<OptionsPicker> {
-  int selectedIndex = 100;
+  int? selectedIndex;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +36,20 @@ class _OptionsPickerState extends State<OptionsPicker> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.title, style: AppStyles.secondaryMedium18),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              widget.titleIcon != null
+                  ? Icon(
+                      widget.titleIcon,
+                      color: AppColors.textPrimaryColor,
+                      size: 20,
+                    )
+                  : const SizedBox(),
+              widget.titleIcon != null ? AppSizes.w8 : const SizedBox(),
+              Text(widget.title, style: AppStyles.secondaryMedium18),
+            ],
+          ),
           AppSizes.h10,
           SizedBox(
             height: 30,
@@ -48,7 +63,11 @@ class _OptionsPickerState extends State<OptionsPicker> {
                       return GestureDetector(
                         onTap: () {
                           setState(() {
-                            selectedIndex = index;
+                            if (selectedIndex == index) {
+                              selectedIndex = null;
+                            } else {
+                              selectedIndex = index;
+                            }
                           });
                         },
                         child: OptionWidget(

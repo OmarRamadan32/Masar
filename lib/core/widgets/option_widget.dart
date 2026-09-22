@@ -21,8 +21,12 @@ class OptionWidget extends StatelessWidget {
       child: Text(
         title,
         style: isActive
-            ? AppStyles.primaryBold13
-            : AppStyles.primaryRegular14,
+            ? AppStyles.primaryBold13.copyWith(
+                fontSize: AppStyles.primaryBold13.fontSize! + 1,
+              )
+            : AppStyles.primaryRegular14.copyWith(
+                color: AppColors.textSecondary75Color,
+              ),
       ),
     );
   }

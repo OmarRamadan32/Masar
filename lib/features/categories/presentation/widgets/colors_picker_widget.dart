@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
@@ -21,7 +22,7 @@ class ColorsPickerWidget extends StatefulWidget {
 }
 
 class _ColorsPickerWidgetState extends State<ColorsPickerWidget> {
-  int selectedIndex = 0;
+  int? selectedIndex;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +35,19 @@ class _ColorsPickerWidgetState extends State<ColorsPickerWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("اللون", style: AppStyles.secondaryMedium18),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // ignore: prefer_const_constructors
+              Icon(
+                IconsaxPlusLinear.colorfilter,
+                color: AppColors.textPrimaryColor,
+                size: 20,
+              ),
+              AppSizes.w8,
+              Text("اللون", style: AppStyles.secondaryMedium18),
+            ],
+          ),
           AppSizes.h10,
           SizedBox(
             height: 30,
@@ -46,7 +59,11 @@ class _ColorsPickerWidgetState extends State<ColorsPickerWidget> {
                     itemCount: ColorsPickerWidget.colors.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () => setState(() => selectedIndex = index),
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
                         child: ColorWidget(
                           isSelected: index == selectedIndex,
                           color: ColorsPickerWidget.colors[index],

@@ -33,12 +33,14 @@ class AddTaskScreen extends StatelessWidget {
           const SliverToBoxAdapter(
             child: OptionsPicker(
               title: "القسم",
+              titleIcon: IconsaxPlusLinear.category_2,
               optionsList: AppOptions.categoriesOptions,
             ),
           ),
           const SliverToBoxAdapter(child: AppSizes.h10),
           const SliverToBoxAdapter(
             child: OptionsPicker(
+              titleIcon: IconsaxPlusLinear.status_up,
               title: "درجة الأولوية",
               optionsList: AppOptions.priorityOptions,
             ),
@@ -46,6 +48,7 @@ class AddTaskScreen extends StatelessWidget {
           const SliverToBoxAdapter(child: AppSizes.h10),
           const SliverToBoxAdapter(
             child: OptionsPicker(
+              titleIcon: IconsaxPlusLinear.repeat,
               title: "عدد مرات التكرار",
               optionsList: AppOptions.taskCount,
               cutomOption: CustomOptionWidget(
@@ -58,6 +61,7 @@ class AddTaskScreen extends StatelessWidget {
           const SliverToBoxAdapter(
             child: OptionsPicker(
               title: "التكرار",
+              titleIcon: IconsaxPlusLinear.calendar,
               optionsList: AppOptions.taskRepeat,
               cutomOption: CustomOptionWidget(
                 title: "مخصص",

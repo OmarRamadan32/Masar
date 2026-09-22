@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:masar/core/constants/app_enums.dart';
 import 'package:masar/core/constants/app_options.dart';
 import 'package:masar/core/theme/app_colors.dart';
@@ -10,7 +11,6 @@ import 'package:masar/features/main_layout/widgets/screen_title.dart';
 
 class AddNoteScreen extends StatelessWidget {
   const new({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +26,19 @@ class AddNoteScreen extends StatelessWidget {
           AppSizes.h10,
           CustomTextField(
             type: CustomTextFieldType.normalTextField,
-             initialValue: "عنوان الملاحظة"),
+            initialValue: "عنوان الملاحظة",
+          ),
           AppSizes.h10,
           OptionsPicker(
+            titleIcon: IconsaxPlusLinear.category_2,
             title: "القسم",
             optionsList: AppOptions.categoriesOptions,
           ),
           AppSizes.h10,
           Expanded(
-            child: CustomTextField(initialValue: "الملاحظة",
-            type: CustomTextFieldType.infinityTextField,
+            child: CustomTextField(
+              initialValue: "الملاحظة",
+              type: CustomTextFieldType.infinityTextField,
             ),
           ),
         ],
@@ -43,4 +46,3 @@ class AddNoteScreen extends StatelessWidget {
     );
   }
 }
-
