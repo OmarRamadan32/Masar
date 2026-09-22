@@ -10,14 +10,14 @@ class TasksOverviewSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Row(
       children: [
-         TaskOverviewCard(
+        TaskOverviewCard(
           title: "2 مهمة",
           subtitle: "الأولوية القصوي",
           icon: IconsaxPlusBold.star_1,
           isPrimary: false,
         ),
         AppSizes.w10,
-         TaskOverviewCard(
+        TaskOverviewCard(
           title: "12 مهمة",
           subtitle: "المهام المكتملة",
           icon: IconsaxPlusBold.tick_circle,
