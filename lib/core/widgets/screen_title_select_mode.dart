@@ -10,57 +10,72 @@ class ScreenTitleSelectMode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
       children: [
-        Text(
-          "تم اختيار:",
-          style: AppStyles.primaryBold20.copyWith(
-            color: AppColors.primaryColor,
-          ),
-        ),
-        AppSizes.w10,
-        Text("3", style: AppStyles.primaryBold20),
-        const Spacer(),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  borderRadius: AppSizes.r8,
-                  color: AppColors.cardsColor,
-                ),
-                child: const Icon(
-                  IconsaxPlusBold.trash,
-                  color: AppColors.textPrimaryColor,
-                  size: 22,
-                ),
+            Expanded(
+              child: Row(
+                children: [
+                  Text(
+                    "عدد العناصر المختارة:  ",
+                    style: AppStyles.primaryBold16,
+                  ),
+
+                  Text(
+                    "3",
+                    style: AppStyles.primaryBold20.copyWith(
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                ],
               ),
             ),
-            AppSizes.w20,
-            GestureDetector(
-              onTap: () {
-                // this will Trigger the Normal (Note/Task) Mode
-              },
-              child: Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  borderRadius: AppSizes.r8,
-                  color: AppColors.cardsColor,
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      borderRadius: AppSizes.r8,
+                      color: AppColors.cardsColor,
+                    ),
+                    child: const Icon(
+                      IconsaxPlusLinear.trash,
+                      color: AppColors.textPrimaryColor,
+                      size: 22,
+                    ),
+                  ),
                 ),
-                child: const Icon(
-                  IconsaxPlusBold.close_square,
-                  color: AppColors.textPrimaryColor,
-                  size: 22,
+                AppSizes.w20,
+                GestureDetector(
+                  onTap: () {
+                    // this will Trigger the Normal (Note/Task) Mode
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      borderRadius: AppSizes.r8,
+                      color: AppColors.cardsColor,
+                    ),
+                    child: const Icon(
+                      IconsaxPlusLinear.close_square,
+                      color: AppColors.textPrimaryColor,
+                      size: 22,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
+        ),
+        const SizedBox(
+          width: double.infinity,
+          child: Divider(thickness: 1, color: Color.fromARGB(117, 88, 96, 100)),
         ),
       ],
     );
   }
 }
-

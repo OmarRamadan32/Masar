@@ -34,7 +34,7 @@ class ScreenTitleNormalMode extends StatelessWidget {
                         color: AppColors.cardsColor,
                       ),
                       child: const Icon(
-                        IconsaxPlusBold.add,
+                        IconsaxPlusLinear.add_square,
                         color: AppColors.textPrimaryColor,
                         size: 22,
                       ),
@@ -56,7 +56,7 @@ class ScreenTitleNormalMode extends StatelessWidget {
                         color: AppColors.cardsColor,
                       ),
                       child: const Icon(
-                        IconsaxPlusBold.mouse_square,
+                        IconsaxPlusLinear.mouse_square,
                         color: AppColors.textPrimaryColor,
                         size: 22,
                       ),

@@ -26,4 +26,3 @@ class ScreenTitle extends StatelessWidget {
     );
   }
 }
-
