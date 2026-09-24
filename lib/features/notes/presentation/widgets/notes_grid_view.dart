@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:masar/core/routing/routes.dart';
+import 'package:masar/core/utils/popup_utils.dart';
 import 'package:masar/features/notes/presentation/widgets/note_card.dart';
 
 class NotesGridView extends StatelessWidget {
@@ -23,6 +24,16 @@ class NotesGridView extends StatelessWidget {
       itemCount: texts.length,
       itemBuilder: (context, index) {
         return GestureDetector(
+          onLongPressStart: (LongPressStartDetails details) {
+          PopupMenuUtils.openOptions(
+              context,
+              details,
+              editText: 'تعديل',
+              deleteText: 'حذف',
+              onEdit: () {},
+              onDelete: () {},
+            );
+          },
           onTap: () => context.push(AppRoutes.note),
           child: NoteCard(text: texts[index]),
         );
