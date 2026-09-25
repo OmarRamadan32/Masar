@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:masar/core/di/service_locator.dart';
 import 'package:masar/core/routing/app_router.dart';
 import 'package:masar/core/theme/app_themes.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+ await setupServiceLocator();
   runApp(const Masar());
 }
 
