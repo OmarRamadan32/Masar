@@ -11,37 +11,35 @@ class CustomTextField extends StatefulWidget {
     this.maxLines,
     this.hintText,
     required this.type,
+    this.controller,
   });
   final String? initialValue;
   final int? maxLines;
   final String? hintText;
   final CustomTextFieldType type;
+  final TextEditingController? controller;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  late TextEditingController controller;
   @override
   void initState() {
-    controller = TextEditingController();
-    controller.text = widget.initialValue ?? "";
+    widget.controller?.text = widget.initialValue ?? '';
     super.initState();
   }
-
-  @override
+    @override
   void dispose() {
-    controller.dispose();
+    widget.controller?.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     final isInfinity = widget.type == CustomTextFieldType.infinityTextField;
     final isMultiLine = widget.type == CustomTextFieldType.multiLineTextField;
     // set maxLines
-    final int? maxLines = isInfinity
+    final int? effectiveMaxLines = isInfinity
         ? null
         : (isMultiLine ? (widget.maxLines ?? 5) : widget.maxLines);
     // handle expands
@@ -60,8 +58,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         borderRadius: AppSizes.r12,
       ),
       child: TextField(
-        controller: controller,
-        maxLines: maxLines,
+        controller: widget.controller,
+        maxLines: effectiveMaxLines,
         expands: expands,
         cursorColor: AppColors.primaryColor,
         keyboardType: keyboardType,
