@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:masar/core/di/service_locator.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/features/categories/presentation/views/add_category_screen.dart';
 import 'package:masar/features/categories/presentation/views/categories_screen.dart';
 import 'package:masar/features/main_layout/views/main_view.dart';
-import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
 import 'package:masar/features/notes/presentation/views/add_note_screen.dart';
 import 'package:masar/features/notes/presentation/views/note_screen.dart';
 import 'package:masar/features/notes/presentation/views/notes_screen.dart';
@@ -34,13 +31,7 @@ final appRouter = GoRouter(
         StatefulShellBranch(
           initialLocation: AppRoutes.notes,
           routes: [
-           ShellRoute(
-            builder: (context, state, child) =>
-            BlocProvider(
-              child: child,
-              create: (context) => getIt<NotesCubit>()),
-            routes: [
-             GoRoute(
+                    GoRoute(
               path: AppRoutes.notes,
               builder: (context, state) => const NotesScreen(),
             ),
@@ -52,7 +43,6 @@ final appRouter = GoRouter(
               path: AppRoutes.addNote,
               builder: (context, state) => const AddNoteScreen(),
             ),
-           ])
           
           ],
         ),
