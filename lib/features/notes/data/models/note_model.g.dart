@@ -20,7 +20,7 @@ class NoteModelAdapter extends TypeAdapter<NoteModel> {
       title: fields[0] as String,
       content: fields[1] as String,
       date: fields[2] as String,
-      color: fields[3] as int,
+      time: fields[3] as String,
       category: fields[4] as CategoryModel?,
     );
   }
@@ -36,7 +36,7 @@ class NoteModelAdapter extends TypeAdapter<NoteModel> {
       ..writeByte(2)
       ..write(obj.date)
       ..writeByte(3)
-      ..write(obj.color)
+      ..write(obj.time)
       ..writeByte(4)
       ..write(obj.category);
   }

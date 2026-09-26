@@ -15,16 +15,16 @@ class NoteModel extends HiveObject {
   String date;
 
   @HiveField(3)
-  int color;
+  String time;
 
   @HiveField(4)
-  CategoryModel? category; // اسم التصنيف المرتبط بها (أو CategoryModel? category)
+  CategoryModel? category; 
 
   NoteModel({
     required this.title,
     required this.content,
     required this.date,
-    required this.color,
+    required this.time,
     this.category,
   });
 }
