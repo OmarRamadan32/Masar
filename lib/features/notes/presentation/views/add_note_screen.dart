@@ -26,7 +26,7 @@ class AddNoteScreen extends StatelessWidget {
           AppSizes.h10,
           CustomTextField(
             type: CustomTextFieldType.normalTextField,
-            initialValue: "عنوان الملاحظة",
+            hintText: "عنوان الملاحظة",
           ),
           AppSizes.h10,
           OptionsPicker(
@@ -37,7 +37,7 @@ class AddNoteScreen extends StatelessWidget {
           AppSizes.h10,
           Expanded(
             child: CustomTextField(
-              initialValue: "الملاحظة",
+              hintText: "الملاحظة",
               type: CustomTextFieldType.infinityTextField,
             ),
           ),
