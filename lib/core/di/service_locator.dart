@@ -3,6 +3,7 @@ import 'package:masar/core/database/datebase_service.dart';
 import 'package:masar/core/database/hive_service.dart';
 import 'package:masar/features/notes/data/repo/notes_repo.dart';
 import 'package:masar/features/notes/data/repo/notes_repo_impl.dart';
+import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -15,4 +16,7 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<NotesRepo>(
     () => NotesRepoImpl(databaseService: databaseService),
   );
+  //-- Cubits
+  getIt.registerFactory<NotesCubit>(() => 
+  NotesCubit(notesRepo: getIt<NotesRepo>()));
 }
