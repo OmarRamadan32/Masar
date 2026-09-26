@@ -5,17 +5,22 @@ import 'package:masar/core/theme/app_styles.dart';
 import 'package:masar/core/widgets/option_widget.dart';
 
 class OptionsPicker extends StatefulWidget {
-  const new({
+  const OptionsPicker({
     super.key,
-    this.cutomOption,
     required this.title,
     required this.optionsList,
     this.titleIcon,
+    this.customOption,
+    this.initialOption,
+    this.onSelect,
   });
-  final Widget? cutomOption;
+
   final String title;
   final List<String> optionsList;
   final IconData? titleIcon;
+  final Widget? customOption;
+  final String? initialOption;
+  final ValueChanged<String?>? onSelect;
 
   @override
   State<OptionsPicker> createState() => _OptionsPickerState();
@@ -23,10 +28,21 @@ class OptionsPicker extends StatefulWidget {
 
 class _OptionsPickerState extends State<OptionsPicker> {
   int? selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialOption != null) {
+      final index = widget.optionsList.indexOf(widget.initialOption!);
+      if (index != -1) {
+        selectedIndex = index;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 100,
       width: double.infinity,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -36,21 +52,24 @@ class _OptionsPickerState extends State<OptionsPicker> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Header Row (Icon + Title)
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              widget.titleIcon != null
-                  ? Icon(
-                      widget.titleIcon,
-                      color: AppColors.textPrimaryColor,
-                      size: 20,
-                    )
-                  : const SizedBox(),
-              widget.titleIcon != null ? AppSizes.w8 : const SizedBox(),
+              if (widget.titleIcon != null) ...[
+                Icon(
+                  widget.titleIcon,
+                  color: AppColors.textPrimaryColor,
+                  size: 20,
+                ),
+                AppSizes.w8,
+              ],
               Text(widget.title, style: AppStyles.secondaryMedium18),
             ],
           ),
           AppSizes.h10,
+
+          // Options Horizontal List
           SizedBox(
             height: 30,
             child: Row(
@@ -60,41 +79,43 @@ class _OptionsPickerState extends State<OptionsPicker> {
                     scrollDirection: Axis.horizontal,
                     itemCount: widget.optionsList.length,
                     itemBuilder: (context, index) {
+                      final option = widget.optionsList[index];
+                      final isSelected = index == selectedIndex;
+
                       return GestureDetector(
                         onTap: () {
                           setState(() {
                             if (selectedIndex == index) {
                               selectedIndex = null;
+                              widget.onSelect?.call(null);
                             } else {
                               selectedIndex = index;
+                              widget.onSelect?.call(option);
                             }
                           });
                         },
                         child: OptionWidget(
-                          title: widget.optionsList[index],
-                          isActive: index == selectedIndex,
+                          title: option,
+                          isActive: isSelected,
                         ),
                       );
                     },
                   ),
                 ),
-                widget.cutomOption != null
-                    ? Row(
-                        children: [
-                          const SizedBox(
-                            width: 1,
-                            child: Divider(
-                              thickness: 30,
-                              color: Color.fromARGB(101, 88, 96, 100),
-                              height: 30,
-                            ),
-                          ),
-                          AppSizes.w4,
-                          widget.cutomOption!,
-                        ],
-                      )
-                    : const SizedBox(),
-                // widget.cutomOption ?? const SizedBox(),
+
+                // Custom Option & Vertical Divider
+                if (widget.customOption != null) ...[
+                  AppSizes.w4,
+                  const VerticalDivider(
+                    width: 1,
+                    thickness: 1,
+                    indent: 4,
+                    endIndent: 4,
+                    color: Color.fromARGB(101, 88, 96, 100),
+                  ),
+                  AppSizes.w8,
+                  widget.customOption!,
+                ],
               ],
             ),
           ),

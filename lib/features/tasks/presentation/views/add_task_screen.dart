@@ -51,7 +51,7 @@ class AddTaskScreen extends StatelessWidget {
               titleIcon: IconsaxPlusLinear.repeat,
               title: "عدد مرات التكرار",
               optionsList: AppOptions.taskCount,
-              cutomOption: CustomOptionWidget(
+              customOption: CustomOptionWidget(
                 title: "مخصص",
                 icon: IconsaxPlusBold.repeat_circle,
               ),
@@ -63,7 +63,7 @@ class AddTaskScreen extends StatelessWidget {
               title: "التكرار",
               titleIcon: IconsaxPlusLinear.calendar,
               optionsList: AppOptions.taskRepeat,
-              cutomOption: CustomOptionWidget(
+              customOption: CustomOptionWidget(
                 title: "مخصص",
                 icon: IconsaxPlusBold.calendar,
               ),
