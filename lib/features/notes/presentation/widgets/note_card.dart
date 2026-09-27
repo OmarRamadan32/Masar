@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
+import 'package:masar/features/notes/data/models/note_model.dart';
 import 'package:masar/features/notes/presentation/widgets/note_card_category.dart';
 import 'package:masar/features/notes/presentation/widgets/note_card_content.dart';
 import 'package:masar/features/notes/presentation/widgets/note_card_date.dart';
 import 'package:masar/features/notes/presentation/widgets/note_card_title.dart';
 
 class NoteCard extends StatelessWidget {
-  const new({super.key, required this.text});
-  final String text;
+  const new({super.key, required this.note});
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +23,26 @@ class NoteCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Row(
+           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [NoteCardCategory(), NoteCardDate()],
+            children: [
+              NoteCardCategory(
+                category: note.category,
+              ),
+               NoteCardDate(
+                date: note.date,
+                time: note.time,
+               )],
           ),
           AppSizes.h10,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const NoteCardTitle(),
+               NoteCardTitle(
+                title: note.title,
+               ),
               AppSizes.h10,
-              NoteCardContent(text: text),
+              NoteCardContent(text: note.content),
             ],
           ),
         ],

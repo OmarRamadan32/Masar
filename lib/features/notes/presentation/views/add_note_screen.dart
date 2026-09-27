@@ -69,7 +69,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
       child: CustomScreen(
         action: IconButton(
           onPressed: () {
-            if (noteTitleController.text.isNotEmpty &&
+            if (noteTitleController.text.isNotEmpty ||
                 noteContentController.text.isNotEmpty) {
               addNote();
             } else {

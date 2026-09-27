@@ -1,42 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/utils/popup_utils.dart';
+import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
 import 'package:masar/features/notes/presentation/widgets/note_card.dart';
 
 class NotesGridView extends StatelessWidget {
   const NotesGridView({super.key});
 
-  static const List<String> texts = [
-    "التأكد من تفاصيل حجز الطيران، مراجعة تأكيد الفندق، وإعداد قائمة الأماكن السياحية المخطط لزيارتها",
-    "18 جرام بن بدرجة طحن متوسطة، 300 مل ماء عند درجة حرارة 92 مئوية",
-    "إضافة دعم للوضع الداكن (Dark Mode)، ميزة تصدير البيانات بصيغة PDF، وتفعيل التذكيرات الذكية.",
-    'لا يوجد محتوي',
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return MasonryGridView.count(
-      crossAxisCount: 2,
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      itemCount: texts.length,
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onLongPressStart: (LongPressStartDetails details) {
-          PopupMenuUtils.openOptions(
-              context,
-              details,
-              editText: 'تعديل',
-              deleteText: 'حذف',
-              onEdit: () {},
-              onDelete: () {},
-            );
-          },
-          onTap: () => context.push(AppRoutes.note),
-          child: NoteCard(text: texts[index]),
-        );
+    NotesCubit notesCubit = context.read<NotesCubit>();
+    return BlocBuilder<NotesCubit, NotesState>(
+      builder: (context, state) {
+        if (state is NotesLoaded) {
+          return MasonryGridView.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            itemCount: notesCubit.notes.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onLongPressStart: (LongPressStartDetails details) {
+                  PopupMenuUtils.openOptions(
+                    context,
+                    details,
+                    editText: 'تعديل',
+                    deleteText: 'حذف',
+                    onEdit: () {},
+                    onDelete: () {},
+                  );
+                },
+                onTap: () => context.push(AppRoutes.note),
+                child: NoteCard(note: notesCubit.notes[index]),
+              );
+            },
+          );
+        } else  if (state is NotesLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          return const Center(child: Text('لا يوجد ملاحظات'));
+        }
       },
     );
   }
