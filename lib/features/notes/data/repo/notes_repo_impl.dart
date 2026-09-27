@@ -5,11 +5,13 @@ import 'package:masar/features/notes/data/repo/notes_repo.dart';
 
 class NotesRepoImpl implements NotesRepo {
   final DatabaseService databaseService;
+  
   NotesRepoImpl({required this.databaseService});
+  static String boxName = HiveConstants.notesBox;
 
   @override
   Future<void> addNote({required NoteModel note}) async {
-   databaseService.add<NoteModel>(HiveConstants.notesBox, note);
+   databaseService.add<NoteModel>(boxName, note);
   }
 
   @override
@@ -20,7 +22,7 @@ class NotesRepoImpl implements NotesRepo {
   @override
   List<NoteModel> getAllNotes() {
     List<NoteModel> notes = databaseService.getAll<NoteModel>(
-      HiveConstants.notesBox,
+      boxName,
     );
     return notes;
   }

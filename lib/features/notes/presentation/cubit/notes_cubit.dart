@@ -11,15 +11,12 @@ class NotesCubit extends Cubit<NotesState> {
   List<NoteModel> notes = [];
 
    void getNotes()  {
-        print("Notes fetched Successfully");
     notes = notesRepo.getAllNotes();
     emit(NotesLoaded(notes: notes));
-    print(notes.length);
 
   }
 
   Future<void> addNote({required NoteModel note}) async {
-    emit(NotesLoading());
     await notesRepo.addNote(note: note);
      getNotes();
   }
