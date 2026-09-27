@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masar/core/di/service_locator.dart';
 import 'package:masar/core/routing/app_router.dart';
 import 'package:masar/core/theme/app_themes.dart';
+import 'package:masar/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
 
 void main() async {
@@ -33,7 +34,8 @@ class Masar extends StatelessWidget {
             data: MediaQuery.of(context)
                 .copyWith(textScaler: TextScaler.noScaling),
             child: MultiBlocProvider(providers: [
-              BlocProvider(create: (context) => getIt<NotesCubit>(),)
+              BlocProvider(create: (context) => getIt<CategoriesCubit>(),),
+              BlocProvider(create: (context) => getIt<NotesCubit>(),),
             ], child: child!)
           ),
         );
