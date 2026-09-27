@@ -5,9 +5,9 @@ abstract class PopupMenuUtils {
   static void openOptions(
     BuildContext context,
     LongPressStartDetails details, {
-    required String editText,
+     String? editText,
     required String deleteText,
-    required VoidCallback onEdit,
+     VoidCallback? onEdit,
     required VoidCallback onDelete,
   }) {
     final RenderBox overlay =
@@ -26,7 +26,7 @@ abstract class PopupMenuUtils {
         borderRadius: BorderRadius.circular(12),
       ),
       items: [
-        PopupMenuItem<String>(
+        if (editText != null) PopupMenuItem<String>(
           value: 'edit',
           child: Row(
             children: [
@@ -54,7 +54,7 @@ abstract class PopupMenuUtils {
       // الحماية: التأكد من أن الشاشة ما زالت موجودة قبل تنفيذ الـ Callbacks
       if (!context.mounted) return;
 
-      if (selectedOption == 'edit') {
+      if (selectedOption == 'edit' && onEdit != null) {
         onEdit();
       } else if (selectedOption == 'delete') {
         onDelete();

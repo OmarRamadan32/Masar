@@ -18,7 +18,6 @@ class NotesCubit extends Cubit<NotesState> {
   Future<void> addNote({required NoteModel note}) async {
     emit(NotesLoading());
     await notesRepo.addNote(note: note);
-    print("note added");
     getNotes();
   }
 

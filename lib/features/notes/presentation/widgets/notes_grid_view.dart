@@ -27,18 +27,21 @@ class NotesGridView extends StatelessWidget {
                   PopupMenuUtils.openOptions(
                     context,
                     details,
-                    editText: 'تعديل',
                     deleteText: 'حذف',
-                    onEdit: () {},
-                    onDelete: () {},
+                    onDelete: () {
+                      notesCubit.deleteNote(note: notesCubit.notes[index]);
+                    },
                   );
                 },
-                onTap: () => context.push(AppRoutes.note),
+                onTap: () => context.push(
+                  AppRoutes.note,
+                  extra: notesCubit.notes[index],
+                ),
                 child: NoteCard(note: notesCubit.notes[index]),
               );
             },
           );
-        } else  if (state is NotesLoading) {
+        } else if (state is NotesLoading) {
           return const Center(child: CircularProgressIndicator());
         } else {
           return const Center(child: Text('لا يوجد ملاحظات'));

@@ -4,6 +4,7 @@ import 'package:masar/core/routing/routes.dart';
 import 'package:masar/features/categories/presentation/views/add_category_screen.dart';
 import 'package:masar/features/categories/presentation/views/categories_screen.dart';
 import 'package:masar/features/main_layout/views/main_view.dart';
+import 'package:masar/features/notes/data/models/note_model.dart';
 import 'package:masar/features/notes/presentation/views/add_note_screen.dart';
 import 'package:masar/features/notes/presentation/views/note_screen.dart';
 import 'package:masar/features/notes/presentation/views/notes_screen.dart';
@@ -31,19 +32,20 @@ final appRouter = GoRouter(
         StatefulShellBranch(
           initialLocation: AppRoutes.notes,
           routes: [
-                    GoRoute(
+            GoRoute(
               path: AppRoutes.notes,
               builder: (context, state) => const NotesScreen(),
             ),
-                GoRoute(
+            GoRoute(
               path: AppRoutes.note,
-              builder: (context, state) => const NoteScreen(),
+
+              builder: (context, state) =>
+                  NoteScreen(note: state.extra as NoteModel),
             ),
-                            GoRoute(
+            GoRoute(
               path: AppRoutes.addNote,
               builder: (context, state) => const AddNoteScreen(),
             ),
-          
           ],
         ),
         // --Tasks branch
@@ -54,8 +56,14 @@ final appRouter = GoRouter(
               path: AppRoutes.tasks,
               builder: (context, state) => const TasksScreen(),
             ),
-            GoRoute(path: AppRoutes.task, builder: (context, state) => const TaskScreen()),
-            GoRoute(path: AppRoutes.addTask, builder: (context, state) => const AddTaskScreen()),
+            GoRoute(
+              path: AppRoutes.task,
+              builder: (context, state) => const TaskScreen(),
+            ),
+            GoRoute(
+              path: AppRoutes.addTask,
+              builder: (context, state) => const AddTaskScreen(),
+            ),
           ],
         ),
         // --Categories branch
@@ -66,7 +74,7 @@ final appRouter = GoRouter(
               path: AppRoutes.categories,
               builder: (context, state) => const CategoriesScreen(),
             ),
-              GoRoute(
+            GoRoute(
               path: AppRoutes.addCategory,
               builder: (context, state) => const AddCategoryScreen(),
             ),
@@ -83,6 +91,5 @@ final appRouter = GoRouter(
         ),
       ],
     ),
-
   ],
 );
