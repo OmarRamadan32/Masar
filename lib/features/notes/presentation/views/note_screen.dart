@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:masar/core/constants/app_enums.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
+import 'package:masar/core/utils/date_formatter.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/core/widgets/custom_text_field.dart';
 import 'package:masar/features/notes/data/models/note_model.dart';
@@ -21,29 +22,31 @@ class _NoteScreenState extends State<NoteScreen> {
   late TextEditingController titleController;
   late TextEditingController contentController;
 
-@override
+  @override
   void initState() {
     super.initState();
     titleController = TextEditingController(text: widget.note.title);
     contentController = TextEditingController(text: widget.note.content);
 
-   
     titleController.addListener(_onTextChanged);
     contentController.addListener(_onTextChanged);
   }
 
   void _onTextChanged() {
-    setState(() {
-    }); 
+    setState(() {});
   }
+
   void updateNote() async {
     NotesCubit notesCubit = context.read<NotesCubit>();
+    widget.note.date = DateFormatter.formatDateOnly(DateTime.now());
+    widget.note.time = DateFormatter.formatTimeOnly(DateTime.now());
     await notesCubit.updateNote(note: widget.note);
   }
+
   bool get isChanged {
-  return titleController.text.trim() != widget.note.title ||
-         contentController.text.trim() != widget.note.content;
-}
+    return titleController.text.trim() != widget.note.title ||
+        contentController.text.trim() != widget.note.content;
+  }
 
   @override
   void dispose() {
@@ -56,22 +59,20 @@ class _NoteScreenState extends State<NoteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
     return CustomScreen(
-      action:
-     isChanged
-    ? IconButton(
-        onPressed: () async {
-          widget.note.title = titleController.text.trim();
-          widget.note.content = contentController.text.trim();
-           updateNote(); 
-          if (context.mounted) {
-            context.pop();
-          }
-        },
-        icon: const Icon(Icons.check, color: AppColors.primaryColor),
-      )
-    : const SizedBox.shrink(),
+      action: isChanged
+          ? IconButton(
+              onPressed: () async {
+                widget.note.title = titleController.text.trim();
+                widget.note.content = contentController.text.trim();
+                updateNote();
+                if (context.mounted) {
+                  context.pop();
+                }
+              },
+              icon: const Icon(Icons.check, color: AppColors.primaryColor),
+            )
+          : const SizedBox.shrink(),
       canPop: true,
       child: Column(
         children: [
