@@ -67,7 +67,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
             : AppStyles.primaryRegular16,
         decoration: InputDecoration(
           hintText: widget.hintText,
-          hintStyle: AppStyles.primaryRegular16,
+          hintStyle: widget.isTitle == true
+              ? AppStyles.primaryBold16
+              : AppStyles.primaryRegular16,
           border: InputBorder.none,
         ),
       ),

@@ -86,6 +86,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
             const ScreenTitle(title: "اضافة ملاحظة", hasOptions: false),
             AppSizes.h10,
             CustomTextField(
+              isTitle: true,
               controller: noteTitleController,
               type: CustomTextFieldType.normalTextField,
               hintText: "عنوان الملاحظة",
