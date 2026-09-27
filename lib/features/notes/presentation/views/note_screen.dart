@@ -77,6 +77,7 @@ class _NoteScreenState extends State<NoteScreen> {
       child: Column(
         children: [
           CustomTextField(
+            isTitle: true,
             controller: titleController,
             type: CustomTextFieldType.normalTextField,
             initialValue: widget.note.title,

@@ -12,12 +12,14 @@ class CustomTextField extends StatefulWidget {
     this.hintText,
     required this.type,
     this.controller,
+    this.isTitle,
   });
   final String? initialValue;
   final int? maxLines;
   final String? hintText;
   final CustomTextFieldType type;
   final TextEditingController? controller;
+  final bool? isTitle;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -29,7 +31,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
     widget.controller?.text = widget.initialValue ?? '';
     super.initState();
   }
-    @override
+
+  @override
   @override
   Widget build(BuildContext context) {
     final isInfinity = widget.type == CustomTextFieldType.infinityTextField;
@@ -59,7 +62,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
         expands: expands,
         cursorColor: AppColors.primaryColor,
         keyboardType: keyboardType,
-        style: AppStyles.primaryRegular16,
+        style: widget.isTitle == true
+            ? AppStyles.primaryBold16
+            : AppStyles.primaryRegular16,
         decoration: InputDecoration(
           hintText: widget.hintText,
           hintStyle: AppStyles.primaryRegular16,
