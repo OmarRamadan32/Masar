@@ -30,10 +30,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
     super.initState();
   }
     @override
-  void dispose() {
-    widget.controller?.dispose();
-    super.dispose();
-  }
   @override
   Widget build(BuildContext context) {
     final isInfinity = widget.type == CustomTextFieldType.infinityTextField;

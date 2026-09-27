@@ -5,9 +5,11 @@ import 'package:masar/core/routing/app_router.dart';
 import 'package:masar/core/theme/app_themes.dart';
 import 'package:masar/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
+import 'package:intl/date_symbol_data_local.dart'; 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('ar', null);
  await setupServiceLocator();
   runApp(const Masar());
 }

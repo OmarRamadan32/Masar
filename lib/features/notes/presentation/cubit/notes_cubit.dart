@@ -10,24 +10,25 @@ class NotesCubit extends Cubit<NotesState> {
   final NotesRepo notesRepo;
   List<NoteModel> notes = [];
 
-   void getNotes()  {
+  void getNotes() {
     notes = notesRepo.getAllNotes();
     emit(NotesLoaded(notes: notes));
-
   }
 
   Future<void> addNote({required NoteModel note}) async {
+    emit(NotesLoading());
     await notesRepo.addNote(note: note);
-     getNotes();
+    print("note added");
+    getNotes();
   }
 
   Future<void> deleteNote({required NoteModel note}) async {
     await notesRepo.deleteNote(note: note);
-     getNotes();
+    getNotes();
   }
 
   Future<void> updateNote({required NoteModel note}) async {
     await notesRepo.updateNote(note: note);
-     getNotes();
+    getNotes();
   }
 }
