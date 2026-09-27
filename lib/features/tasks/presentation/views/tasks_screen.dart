@@ -14,19 +14,23 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const CustomScreen(
       canPop: false,
-      child: Column(
-        children: [
-          ScreenTitle(
-            title: "المهام",
-            hasOptions: true,
-            addItemScreenPath: AppRoutes.addTask,
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: ScreenTitle(
+              title: "المهام",
+              hasOptions: true,
+              addItemScreenPath: AppRoutes.addTask,
+            ),
           ),
-          AppSizes.h10,
-          TasksOverviewSection(),
-          AppSizes.h10,
-          TodayTasksProgressCard(),
-          AppSizes.h10,
-          Expanded(child: TasksListView()),
+          SliverToBoxAdapter(child: AppSizes.h10),
+
+          SliverToBoxAdapter(child: TasksOverviewSection()),
+          SliverToBoxAdapter(child: AppSizes.h10),
+
+          SliverToBoxAdapter(child: TodayTasksProgressCard()),
+          SliverToBoxAdapter(child: AppSizes.h10),
+          TasksSliverListView(),
         ],
       ),
     );
