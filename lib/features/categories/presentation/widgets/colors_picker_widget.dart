@@ -6,23 +6,17 @@ import 'package:masar/core/theme/app_styles.dart';
 import 'package:masar/features/categories/presentation/widgets/color_widget.dart';
 
 class ColorsPickerWidget extends StatefulWidget {
-  const new({super.key});
-  static const List<Color> colors = [
-    Colors.red,
-    Color(0XFF50C878),
-    Colors.purple,
-    Color(0XFF4A90E2),
-    Colors.yellow,
-    Colors.orange,
-    Color(0xffE84393),
-  ];
+  const new({super.key, this.onColorSelected});
+  static const List<int> colors = AppColors.categoriesColors;
+  final Function(int)? onColorSelected;
 
   @override
   State<ColorsPickerWidget> createState() => _ColorsPickerWidgetState();
 }
 
 class _ColorsPickerWidgetState extends State<ColorsPickerWidget> {
-  int? selectedIndex;
+
+  int? selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,28 +44,25 @@ class _ColorsPickerWidgetState extends State<ColorsPickerWidget> {
           ),
           AppSizes.h10,
           SizedBox(
-            height: 30,
-            child: Row(
+            // height: 100,
+            child: Wrap(
               children: [
-                Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: ColorsPickerWidget.colors.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        child: ColorWidget(
-                          isSelected: index == selectedIndex,
-                          color: ColorsPickerWidget.colors[index],
-                        ),
-                      );
+                ...List.generate(ColorsPickerWidget.colors.length, (index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                        widget.onColorSelected!(
+                          ColorsPickerWidget.colors[index],
+                        );
+                      });
                     },
-                  ),
-                ),
+                    child: ColorWidget(
+                      isSelected: index == selectedIndex,
+                      color: Color(ColorsPickerWidget.colors[index]),
+                    ),
+                  );
+                }),
               ],
             ),
           ),

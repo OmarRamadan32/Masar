@@ -8,7 +8,7 @@ class ColorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 10),
+      margin: const EdgeInsets.only(left: 10, bottom: 10),
       width: 28,
       height: 28,
       decoration: ShapeDecoration(

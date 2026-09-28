@@ -18,23 +18,34 @@ abstract class AppColors {
   static const Color inactiveBottomNavItemColor = Color(0xFF94A3B8);
   //--
   static const Color labelBlackColor = Color(0XFF000000);
+  static const Color testColor = Color(0XFF1ABC9C);
   //-- Categories Colors
   static const List<int> categoriesColors = [
+    0XFFE45742,
+    0XFF972828,
+    0XFFEB7F31,
+    0XFFFCAD38,
+    //-
+    0XFF22396F,
+    0XFF253C6D,
+    0XFF455B8A,
+    //-
+    0XFF123F36,
+    0xFF1E5D43,
+    0XFF27AE60,
+    //-
+    0XFF3368A0,
     0XFF4A90E2,
-    0XFF2C3E50,
-    0XFF7F8C8D,
-    0XFFF39C12,
-    0XFFC0392B,
-    0XFFBDC3C7,
-    0XFF27AE60,
-    0XFF9B59B6,
-    0XFF1ABC9C,
-    0XFFF1C40F,
-    0XFFC0392B,
-    0XFFBDC3C7,
-    0XFF27AE60,
-    0XFF9B59B6,
-    0XFF1ABC9C,
-    0XFFF1C40F
+    0XFF66A3BF,
+    //-
+    0XFF2B5748,
+    0XFF618764,
+    0XFF9CB080,
+    //-
+    0XFF343131,
+    0XFFA04747,
+    0XFFD8A25E,
+
+    //-
   ];
 }
