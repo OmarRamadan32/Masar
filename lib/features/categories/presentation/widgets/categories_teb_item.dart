@@ -1,13 +1,18 @@
-
 import 'package:flutter/material.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
 
 class CategoriesTabItem extends StatelessWidget {
-  const new({super.key, required this.title, required this.isSelected});
+  const new({
+    super.key,
+    required this.title,
+    required this.isSelected,
+    required this.color,
+  });
   final String title;
   final bool isSelected;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,7 @@ class CategoriesTabItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: AppSizes.r12,
-        color: isSelected ? AppColors.primaryColor : AppColors.cardsColor,
+        color: isSelected ? color : AppColors.cardsColor,
       ),
       child: Text(
         title,
