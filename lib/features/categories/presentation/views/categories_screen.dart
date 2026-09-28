@@ -23,6 +23,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     super.initState();
   }
 
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CategoriesCubit, CategoriesState>(
@@ -38,16 +39,26 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   addItemScreenPath: AppRoutes.addCategory,
                 ),
                 AppSizes.h10,
-                CategoriesTabsRow(categories: state.categories),
+                CategoriesTabsRow(
+                  selectedCategoryIndex: (selctedIndex) {
+                    index = selctedIndex;
+                    setState(() {});
+                  },
+                  categories: state.categories,
+                ),
                 AppSizes.h20,
                 const CategoryViewSwitcher(),
                 AppSizes.h10,
-                const Expanded(child: NotesGridView()),
+                Expanded(
+                  child: NotesGridView(
+                    categoryName: state.categories[index].name,
+                  ),
+                ),
               ],
             ),
           );
         } else {
-          return const Center(child:Text("لا يوحد اي فئات بعد"));
+          return const Center(child: Text("لا يوحد اي فئات بعد"));
         }
       },
     );

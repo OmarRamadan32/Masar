@@ -30,4 +30,6 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     await categoriesRepo.updateCategory(category: category);
     getCategories();
   }
+
+
 }
