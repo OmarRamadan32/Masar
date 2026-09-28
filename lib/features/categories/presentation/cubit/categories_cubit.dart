@@ -17,7 +17,6 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
   Future<void> addCategory({required CategoryModel category}) async {
     await categoriesRepo.addCategory(category: category);
-    print("category added");
     getCategories();
   }
 
