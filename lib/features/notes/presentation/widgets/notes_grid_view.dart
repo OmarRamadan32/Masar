@@ -20,7 +20,7 @@ class NotesGridView extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
-            itemCount: notesCubit.notes.length,
+            itemCount: state.notes.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onLongPressStart: (LongPressStartDetails details) {
@@ -29,15 +29,13 @@ class NotesGridView extends StatelessWidget {
                     details,
                     deleteText: 'حذف',
                     onDelete: () {
-                      notesCubit.deleteNote(note: notesCubit.notes[index]);
+                      notesCubit.deleteNote(note: state.notes[index]);
                     },
                   );
                 },
-                onTap: () => context.push(
-                  AppRoutes.note,
-                  extra: notesCubit.notes[index],
-                ),
-                child: NoteCard(note: notesCubit.notes[index]),
+                onTap: () =>
+                    context.push(AppRoutes.note, extra: state.notes[index]),
+                child: NoteCard(note: state.notes[index]),
               );
             },
           );
