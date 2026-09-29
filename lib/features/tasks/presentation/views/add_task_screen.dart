@@ -135,7 +135,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   if (value == AppOptions.infinite) {
                     repeatCount = 9999999;
                   } else if (value == AppOptions.noRepeat) {
-                    repeatCount = 0;
+                    repeatCount = 1;
                   } else {
                     repeatCount = int.parse(value!);
                   }
