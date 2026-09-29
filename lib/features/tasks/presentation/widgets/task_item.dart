@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
+import 'package:masar/features/tasks/data/models/task_model.dart';
+import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
 import 'package:masar/features/tasks/presentation/widgets/task_item_details.dart';
 import 'package:masar/features/tasks/presentation/widgets/task_item_title.dart';
 import 'package:masar/features/tasks/presentation/widgets/tesk_item_checkbox.dart';
@@ -11,21 +14,20 @@ import 'package:masar/features/tasks/presentation/widgets/tesk_item_checkbox.dar
 // This widget will be converted to a stateless widget, and leave the state management to the parent widget
 // using the Cubit
 class TaskItem extends StatefulWidget {
-  const new({super.key});
+  const new({super.key, required this.task});
+  final TaskModel task;
 
   @override
   State<TaskItem> createState() => _TaskItemState();
 }
 
 class _TaskItemState extends State<TaskItem> {
-  bool isCompleted = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          isCompleted = !isCompleted;
-        });
+        widget.task.isCompleted = !widget.task.isCompleted;
+        context.read<TasksCubit>().updateTask(task: widget.task);
       },
       child: Container(
         width: double.infinity,
@@ -36,14 +38,20 @@ class _TaskItemState extends State<TaskItem> {
         ),
         child: Row(
           children: [
-            TaskItemCheckbox(isCompleted: isCompleted),
+            TaskItemCheckbox(isCompleted: widget.task.isCompleted),
             AppSizes.w10,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TaskItemTitle(isCompleted: isCompleted),
+                TaskItemTitle(
+                  title: widget.task.title,
+                  isCompleted: widget.task.isCompleted,
+                ),
                 AppSizes.h4,
-                const TaskItemDetails(),
+                TaskItemDetails(
+                  priority: widget.task.priority,
+                  categoryName: widget.task.category?.name,
+                ),
               ],
             ),
             const Spacer(),

@@ -6,7 +6,10 @@ abstract class AppOptions {
     'العمل',
     'المواعيد',
   ];
-  static const List<String> priorityOptions = ["عادية", "متوسطة", "عالية"];
+  static const String normal= 'عادية';
+  static const String medium = 'متوسطة';
+  static const String high = 'عالية';
+  static const List<String> priorityOptions = [normal, medium, high];
   static const String infinite = "لا نهائي";
   static const String noRepeat = "بدون تكرار";
   static const List<String> taskCount = [

@@ -17,10 +17,6 @@ class TasksCubit extends Cubit<TasksState> {
 
   Future<void> addTask({required TaskModel task}) async {
     await tasksRepo.addTask(task: task);
-    print(task.time);
-    print(task.priority);
-    print(task.repeatCount);
-    print(task.repeatType);
     getTasks();
   }
 

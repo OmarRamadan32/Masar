@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/utils/popup_utils.dart';
+import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/widgets/task_item.dart';
 
 class TasksSliverListView extends StatelessWidget {
-  const new({super.key});
+  const new({super.key, required this.tasks});
+  final List<TaskModel> tasks;
 
   @override
   Widget build(BuildContext context) {
     return SliverList.builder(
-      itemCount: 8,
+      itemCount: tasks.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
@@ -26,9 +28,11 @@ class TasksSliverListView extends StatelessWidget {
               onDelete: () {},
             );
           },
-          child: const Padding(
-            padding: EdgeInsets.only(bottom: 8),
-            child: TaskItem(),
+          child:  Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: TaskItem(
+              task: tasks[index],
+            ),
           ),
         );
       },
