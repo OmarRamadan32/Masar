@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
+import 'package:masar/features/tasks/data/models/task_model.dart';
+import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
 
 class TodayTasksProgressCard extends StatelessWidget {
-  const new({super.key});
+  const new({super.key, required this.inCompleteTasks});
+  final int inCompleteTasks;
 
   @override
   Widget build(BuildContext context) {
+    List<TaskModel> tasks = context.read<TasksCubit>().tasksList;
+
+    int completedTasksCount = tasks
+        .where((element) => element.isCompleted)
+        .length;
+    int inCompleteTasks = tasks.length - completedTasksCount;
+
+    String cardTitle = inCompleteTasks == 0
+        ? "جميع المهام مكتملة"
+        : "لديك $inCompleteTasks مهام غير مكتملة";
+
+    String completionPercentage = tasks.isEmpty
+        ? "0%"
+        : "${((completedTasksCount / tasks.length) * 100).toStringAsFixed(0)}%";
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),
@@ -32,7 +50,7 @@ class TodayTasksProgressCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  "لديك 4 مهام غير مكتملة",
+                  cardTitle,
                   style: AppStyles.primaryBold20.copyWith(
                     color: const Color(0xFFE1FFEC),
                   ),
@@ -54,7 +72,7 @@ class TodayTasksProgressCard extends StatelessWidget {
                 ),
                 AppSizes.w4,
                 Text(
-                  "تم انجاز 70% من مهامك",
+                  "تم انجاز $completionPercentage من مهامك",
                   style: AppStyles.primaryRegular14.copyWith(
                     color: const Color(0xFFE1FFEC),
                   ),

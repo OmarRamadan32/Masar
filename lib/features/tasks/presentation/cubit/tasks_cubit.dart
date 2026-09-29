@@ -11,8 +11,8 @@ class TasksCubit extends Cubit<TasksState> {
   List<TaskModel> tasksList = [];
 
   void getTasks() {
-    List<TaskModel> tasks = tasksRepo.getTasks();
-    emit(TasksLoaded(tasks: tasks));
+    tasksList = tasksRepo.getTasks();
+    emit(TasksLoaded(tasks: tasksList));
   }
 
   Future<void> addTask({required TaskModel task}) async {

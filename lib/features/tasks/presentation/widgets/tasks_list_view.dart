@@ -11,6 +11,10 @@ class TasksSliverListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<TaskModel> sortedTasks = [
+      ...tasks.where((task) => !task.isCompleted), 
+      ...tasks.where((task) => task.isCompleted),
+    ];
     return SliverList.builder(
       itemCount: tasks.length,
       itemBuilder: (context, index) {
@@ -28,11 +32,9 @@ class TasksSliverListView extends StatelessWidget {
               onDelete: () {},
             );
           },
-          child:  Padding(
+          child: Padding(
             padding: const EdgeInsets.only(bottom: 8),
-            child: TaskItem(
-              task: tasks[index],
-            ),
+            child: TaskItem(task: sortedTasks[index]),
           ),
         );
       },

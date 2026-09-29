@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:masar/core/constants/app_options.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
@@ -26,38 +27,51 @@ class _TasksScreenState extends State<TasksScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TasksCubit, TasksState>(builder:
-    (context, state) {
-      if (state is TasksLoaded) {
-        List<TaskModel> tasks = state.tasks;
+    return BlocBuilder<TasksCubit, TasksState>(
+      builder: (context, state) {
+        if (state is TasksLoaded) {
+          List<TaskModel> tasks = state.tasks;
           return CustomScreen(
-      canPop: false,
-      child: CustomScrollView(
-        slivers: [
-          const SliverToBoxAdapter(
-            child:  ScreenTitle(
-              title: "المهام",
-              hasOptions: true,
-              addItemScreenPath: AppRoutes.addTask,
+            canPop: false,
+            child: CustomScrollView(
+              slivers: [
+                const SliverToBoxAdapter(
+                  child: ScreenTitle(
+                    title: "المهام",
+                    hasOptions: true,
+                    addItemScreenPath: AppRoutes.addTask,
+                  ),
+                ),
+                const SliverToBoxAdapter(child: AppSizes.h10),
+
+                SliverToBoxAdapter(
+                  child: TasksOverviewSection(
+                    completedTasks: tasks
+                        .where((element) => element.isCompleted)
+                        .length,
+                    tasksWithHighPriority: tasks
+                        .where((element) => element.priority == AppOptions.high)
+                        .length,
+                  ),
+                ),
+                const SliverToBoxAdapter(child: AppSizes.h10),
+
+                SliverToBoxAdapter(
+                  child: TodayTasksProgressCard(
+                    inCompleteTasks: tasks
+                        .where((element) => !element.isCompleted)
+                        .length,
+                  ),
+                ),
+                const SliverToBoxAdapter(child: AppSizes.h10),
+                TasksSliverListView(tasks: tasks),
+              ],
             ),
-          ),
-          const SliverToBoxAdapter(child: AppSizes.h10),
-
-          const SliverToBoxAdapter(child:  TasksOverviewSection()),
-          const SliverToBoxAdapter(child: AppSizes.h10),
-
-          const SliverToBoxAdapter(child:  TodayTasksProgressCard()),
-          const SliverToBoxAdapter(child: AppSizes.h10),
-          TasksSliverListView(
-            tasks: tasks,
-          ),
-        ],
-      ),
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
     );
-      } else {
-        return const SizedBox.shrink();
-      }
-    },
-     );
   }
 }

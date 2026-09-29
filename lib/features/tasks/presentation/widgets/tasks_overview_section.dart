@@ -4,21 +4,24 @@ import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/features/tasks/presentation/widgets/task_overview_card.dart';
 
 class TasksOverviewSection extends StatelessWidget {
-  const new({super.key});
+  const new({super.key,required this.tasksWithHighPriority,required this.completedTasks});
+  final int tasksWithHighPriority;
+  final int completedTasks;
 
   @override
+
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
         TaskOverviewCard(
-          title: "2 مهمة",
+          title: '$tasksWithHighPriority مهمة',
           subtitle: "الأولوية القصوي",
           icon: IconsaxPlusBold.star_1,
           isPrimary: false,
         ),
         AppSizes.w10,
-        TaskOverviewCard(
-          title: "12 مهمة",
+         TaskOverviewCard(
+          title: '$completedTasks مهمة',
           subtitle: "المهام المكتملة",
           icon: IconsaxPlusBold.tick_circle,
           isPrimary: true,
