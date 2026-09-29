@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:masar/core/constants/app_options.dart';
 import 'package:masar/features/categories/data/models/category_model.dart';
 part 'task_model.g.dart';
 
@@ -8,7 +9,7 @@ class TaskModel extends HiveObject {
   String title;
 
   @HiveField(1)
-  String description;
+  String? description;
 
   @HiveField(2)
   final String date;
@@ -17,7 +18,7 @@ class TaskModel extends HiveObject {
   final String time;
 
   @HiveField(4)
-  CategoryModel category;
+  CategoryModel? category;
 
   @HiveField(5)
   String priority;
@@ -44,14 +45,12 @@ class TaskModel extends HiveObject {
   //--
   int get repeatTypeByDays {
     switch (repeatType) {
-      case "Daily":
+      case AppOptions.daily:
         return 1;
-      case "Weekly":
+      case AppOptions.weekly:
         return 7;
-      case "Monthly":
+      case AppOptions.monthly:
         return 30;
-      case "Yearly":
-        return 365;
       default:
         return 0;
     }
@@ -74,17 +73,18 @@ class TaskModel extends HiveObject {
   bool get canCheck => lastCheckByDays >= repeatTypeByDays;
 
   TaskModel(
-    this.title,
+   {
+    required this.title,
     this.description,
-    this.date,
-    this.time,
+  required  this.date,
+   required this.time,
     this.category,
-    this.priority,
-    this.isCompleted,
-    this.repeatCount,
-    this.completedCount,
-    this.repeatType,
+   required this.priority,
+   required this.isCompleted,
+   required this.repeatCount,
+   required this.completedCount,
+   required this.repeatType,
     this.lastCheckDate,
-    this.previousCheckDate,
+    this.previousCheckDate,}
   );
 }

@@ -10,18 +10,25 @@ class TasksCubit extends Cubit<TasksState> {
   TasksCubit({required this.tasksRepo}) : super(TasksInitial());
   List<TaskModel> tasksList = [];
 
-  void getTasks()  {
-    List<TaskModel> tasks = tasksRepo.getTasks();    
+  void getTasks() {
+    List<TaskModel> tasks = tasksRepo.getTasks();
     emit(TasksLoaded(tasks: tasks));
   }
+
   Future<void> addTask({required TaskModel task}) async {
     await tasksRepo.addTask(task: task);
+    print(task.time);
+    print(task.priority);
+    print(task.repeatCount);
+    print(task.repeatType);
     getTasks();
   }
+
   Future<void> updateTask({required TaskModel task}) async {
     await tasksRepo.updateTask(task: task);
     getTasks();
   }
+
   Future<void> deleteTask({required TaskModel task}) async {
     await tasksRepo.deleteTask(task: task);
     getTasks();
