@@ -4,8 +4,12 @@ import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const new({super.key, required this.title, required this.onPress});
-  final String title;
+  const new( {
+    super.key,
+    required this.onPress,
+    required this.buttonTitle,
+  });
+  final String buttonTitle;
   final Function() onPress;
 
   @override
@@ -18,7 +22,7 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: AppSizes.r16),
       ),
       child: Text(
-        title,
+        buttonTitle,
         style: AppStyles.secondaryBold20.copyWith(
           color: AppColors.surfacePrimaryColor,
         ),

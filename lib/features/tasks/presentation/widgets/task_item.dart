@@ -24,45 +24,45 @@ class TaskItem extends StatefulWidget {
 class _TaskItemState extends State<TaskItem> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        widget.task.isCompleted = !widget.task.isCompleted;
-        context.read<TasksCubit>().updateTask(task: widget.task);
-      },
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: AppColors.cardsColor,
-          borderRadius: AppSizes.r16,
-        ),
-        child: Row(
-          children: [
-            TaskItemCheckbox(isCompleted: widget.task.isCompleted),
-            AppSizes.w10,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TaskItemTitle(
-                  title: widget.task.title,
-                  isCompleted: widget.task.isCompleted,
-                ),
-                AppSizes.h4,
-                TaskItemDetails(
-                  priority: widget.task.priority,
-                  categoryName: widget.task.category?.name,
-                ),
-              ],
-            ),
-            const Spacer(),
-            GestureDetector(
-              onTap: () {
-                context.push(AppRoutes.task);
-              },
-              child: const Icon(IconsaxPlusLinear.arrow_left_1, size: 20),
-            ),
-          ],
-        ),
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.cardsColor,
+        borderRadius: AppSizes.r16,
+      ),
+      child: Row(
+        children: [
+          GestureDetector(
+            onTap: () {
+              widget.task.isCompleted = !widget.task.isCompleted;
+              context.read<TasksCubit>().updateTask(task: widget.task);
+            },
+            child: TaskItemCheckbox(isCompleted: widget.task.isCompleted),
+          ),
+          AppSizes.w10,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TaskItemTitle(
+                title: widget.task.title,
+                isCompleted: widget.task.isCompleted,
+              ),
+              AppSizes.h4,
+              TaskItemDetails(
+                priority: widget.task.priority,
+                categoryName: widget.task.category?.name,
+              ),
+            ],
+          ),
+          const Spacer(),
+          GestureDetector(
+            onTap: () {
+              context.push(AppRoutes.task, extra: widget.task);
+            },
+            child: const Icon(IconsaxPlusLinear.arrow_left_1, size: 20),
+          ),
+        ],
       ),
     );
   }

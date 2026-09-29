@@ -57,34 +57,34 @@ class TaskModel extends HiveObject {
   }
 
   int get lastCheckByDays {
-  if (lastCheckDate == null || lastCheckDate!.isEmpty) {
-    return 999999;
+    if (lastCheckDate == null || lastCheckDate!.isEmpty) {
+      return 999999;
+    }
+    final lastDate = DateTime.parse(lastCheckDate!);
+    final now = DateTime.now();
+
+    // make hours == 00:00, to cancel effect of time
+    final lastDateOnly = DateTime(lastDate.year, lastDate.month, lastDate.day);
+    final nowDateOnly = DateTime(now.year, now.month, now.day);
+
+    return nowDateOnly.difference(lastDateOnly).inDays;
   }
-  final lastDate = DateTime.parse(lastCheckDate!);
-  final now = DateTime.now();
 
-  // make hours == 00:00, to cancel effect of time
-  final lastDateOnly = DateTime(lastDate.year, lastDate.month, lastDate.day);
-  final nowDateOnly = DateTime(now.year, now.month, now.day);
+  bool get canCheck =>
+      lastCheckByDays >= repeatTypeByDays && remainingCount > 0 && !isCompleted;
 
-  return nowDateOnly.difference(lastDateOnly).inDays;
-}
-
-  bool get canCheck => lastCheckByDays >= repeatTypeByDays;
-
-  TaskModel(
-   {
+  TaskModel({
     required this.title,
     this.description,
-  required  this.date,
-   required this.time,
+    required this.date,
+    required this.time,
     this.category,
-   required this.priority,
-   required this.isCompleted,
-   required this.repeatCount,
-   required this.completedCount,
-   required this.repeatType,
+    required this.priority,
+    required this.isCompleted,
+    required this.repeatCount,
+    required this.completedCount,
+    required this.repeatType,
     this.lastCheckDate,
-    this.previousCheckDate,}
-  );
+    this.previousCheckDate,
+  });
 }

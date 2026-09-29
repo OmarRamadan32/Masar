@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/utils/popup_utils.dart';
 import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/widgets/task_item.dart';
@@ -12,16 +10,13 @@ class TasksSliverListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<TaskModel> sortedTasks = [
-      ...tasks.where((task) => !task.isCompleted), 
+      ...tasks.where((task) => !task.isCompleted),
       ...tasks.where((task) => task.isCompleted),
     ];
     return SliverList.builder(
-      itemCount: tasks.length,
+      itemCount: sortedTasks.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: () {
-            context.push(AppRoutes.task);
-          },
           onLongPressStart: (LongPressStartDetails details) {
             PopupMenuUtils.openOptions(
               context,

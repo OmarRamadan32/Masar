@@ -179,7 +179,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   ),
                   AppSizes.h10,
                   CustomButton(
-                    title: "إتمام",
+                    buttonTitle: "إتمام",
                     onPress: () {
                       _addTask(context);
                     },

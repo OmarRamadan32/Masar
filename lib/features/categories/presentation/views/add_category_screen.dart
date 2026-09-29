@@ -76,7 +76,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
             ),
             const Spacer(),
             CustomButton(
-              title: "إتمام",
+              buttonTitle: "إتمام",
               onPress: () async {
                 if (titleController.text.isNotEmpty) {
                   await _addCategory();
