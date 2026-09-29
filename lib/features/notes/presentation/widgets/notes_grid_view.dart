@@ -8,10 +8,20 @@ import 'package:masar/features/notes/data/models/note_model.dart';
 import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
 import 'package:masar/features/notes/presentation/widgets/note_card.dart';
 
-class NotesGridView extends StatelessWidget {
+class NotesGridView extends StatefulWidget {
   const NotesGridView({super.key, this.categoryName});
   final String? categoryName;
 
+  @override
+  State<NotesGridView> createState() => _NotesGridViewState();
+}
+
+class _NotesGridViewState extends State<NotesGridView> {
+    @override
+  void initState() {
+    context.read<NotesCubit>().getNotes();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     NotesCubit notesCubit = context.read<NotesCubit>();
@@ -19,9 +29,9 @@ class NotesGridView extends StatelessWidget {
       builder: (context, state) {
         if (state is NotesLoaded) {
           List<NoteModel> notes;
-          if (categoryName != null) {
+          if (widget.categoryName != null) {
             notes = state.notes
-                .where((note) => note.category?.name == categoryName)
+                .where((note) => note.category?.name == widget.categoryName)
                 .toList();
           } else {
             notes = state.notes;
