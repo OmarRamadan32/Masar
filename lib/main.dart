@@ -5,7 +5,8 @@ import 'package:masar/core/routing/app_router.dart';
 import 'package:masar/core/theme/app_themes.dart';
 import 'package:masar/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
-import 'package:intl/date_symbol_data_local.dart'; 
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart'; 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +39,7 @@ class Masar extends StatelessWidget {
             child: MultiBlocProvider(providers: [
               BlocProvider(create: (context) => getIt<CategoriesCubit>(),),
               BlocProvider(create: (context) => getIt<NotesCubit>(),),
+              BlocProvider(create: (context) => getIt<TasksCubit>(),),
             ], child: child!)
           ),
         );

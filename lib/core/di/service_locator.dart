@@ -7,6 +7,9 @@ import 'package:masar/features/categories/presentation/cubit/categories_cubit.da
 import 'package:masar/features/notes/data/repo/notes_repo.dart';
 import 'package:masar/features/notes/data/repo/notes_repo_impl.dart';
 import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
+import 'package:masar/features/tasks/data/repos/task_repo_impl.dart';
+import 'package:masar/features/tasks/data/repos/tasks_repo.dart';
+import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -19,14 +22,21 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<NotesRepo>(
     () => NotesRepoImpl(databaseService: databaseService),
   );
-  GetIt.instance.registerLazySingleton<CategoriesRepo>(
+  getIt.registerLazySingleton<CategoriesRepo>(
     () => CategoriesRepoImpl(databaseService: databaseService),
   );
+  getIt.registerLazySingleton<TasksRepo>(() => TaskRepoImpl(
+    databaseService: databaseService,
+  ));
+
   //-- Cubits
   getIt.registerFactory<NotesCubit>(
     () => NotesCubit(notesRepo: getIt<NotesRepo>()),
   );
   getIt.registerFactory(
     () => CategoriesCubit(categoriesRepo: getIt<CategoriesRepo>()),
+  );
+  getIt.registerFactory(
+    () => TasksCubit(tasksRepo: getIt<TasksRepo>()),
   );
 }
