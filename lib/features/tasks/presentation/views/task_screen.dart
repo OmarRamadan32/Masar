@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
+import 'package:masar/core/utils/date_formatter.dart';
 import 'package:masar/core/widgets/custom_button.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/features/tasks/data/models/task_model.dart';
@@ -14,14 +15,15 @@ class TaskScreen extends StatelessWidget {
   final TaskModel task;
 
   Future<void> _onPress(BuildContext context) async {
-    if (task.canCheck) {
+    if (task.remainingCount > 0) {
       task.isCompleted = !task.isCompleted;
+      // Last check date
+      task.lastCheckDate = DateFormatter.formatDateOnly(DateTime.now());
+      // Completed count
       task.completedCount = task.isCompleted
           ? task.completedCount + 1
           : task.completedCount - 1;
-    } else if (task.isCompleted) {
-      task.isCompleted = false;
-      task.completedCount = task.completedCount - 1;
+      // is Task Completed
     }
     context.read<TasksCubit>().updateTask(task: task);
   }
@@ -45,17 +47,23 @@ class TaskScreen extends StatelessWidget {
                 AppSizes.h10,
                 TaskOverviewSectionTwo(
                   isDone: task.isCompleted,
-                  nextDate: task.time,
+                  nextDate: task.repeatType,
                 ),
                 AppSizes.h20,
                 Text("تفاصيل المهمة", style: AppStyles.primaryRegular16),
                 const Spacer(),
-                CustomButton(
-                  buttonTitle: task.canCheck ? "انجاز المهمة" : "الغاء الانجاز",
-                  onPress: () {
-                    _onPress(context);
-                  },
-                ),
+                task.remainingCount > 0
+                    ? CustomButton(
+                        buttonTitle: task.isCompleted == false
+                            ? "انجاز المهمة"
+                            : "الغاء الانجاز",
+                        onPress: () {
+                          _onPress(context);
+                        },
+                      )
+                    : const Center(
+                        child: Text("تم انجاز جميع مرات تكرار المهمة"),
+                      ),
 
                 AppSizes.h20,
               ],

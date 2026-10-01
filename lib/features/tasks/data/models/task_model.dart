@@ -56,22 +56,6 @@ class TaskModel extends HiveObject {
     }
   }
 
-  int get lastCheckByDays {
-    if (lastCheckDate == null || lastCheckDate!.isEmpty) {
-      return 999999;
-    }
-    final lastDate = DateTime.parse(lastCheckDate!);
-    final now = DateTime.now();
-
-    // make hours == 00:00, to cancel effect of time
-    final lastDateOnly = DateTime(lastDate.year, lastDate.month, lastDate.day);
-    final nowDateOnly = DateTime(now.year, now.month, now.day);
-
-    return nowDateOnly.difference(lastDateOnly).inDays;
-  }
-
-  bool get canCheck =>
-      lastCheckByDays >= repeatTypeByDays && remainingCount > 0 && !isCompleted;
 
   TaskModel({
     required this.title,

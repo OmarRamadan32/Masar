@@ -5,6 +5,7 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
+import 'package:masar/core/utils/date_formatter.dart';
 import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
 import 'package:masar/features/tasks/presentation/widgets/task_item_details.dart';
@@ -22,6 +23,15 @@ class TaskItem extends StatefulWidget {
 }
 
 class _TaskItemState extends State<TaskItem> {
+  Future<void> _onPress() async {
+    widget.task.isCompleted = !widget.task.isCompleted;
+    widget.task.lastCheckDate = DateFormatter.formatDateOnly(DateTime.now());
+    widget.task.completedCount = widget.task.isCompleted
+        ? widget.task.completedCount + 1
+        : widget.task.completedCount - 1;
+    context.read<TasksCubit>().updateTask(task: widget.task);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,8 +45,7 @@ class _TaskItemState extends State<TaskItem> {
         children: [
           GestureDetector(
             onTap: () {
-              widget.task.isCompleted = !widget.task.isCompleted;
-              context.read<TasksCubit>().updateTask(task: widget.task);
+              _onPress();
             },
             child: TaskItemCheckbox(isCompleted: widget.task.isCompleted),
           ),

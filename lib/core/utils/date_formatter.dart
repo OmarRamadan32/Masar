@@ -16,4 +16,5 @@ abstract class DateFormatter {
   static String formatTimeOnly(DateTime dateTime) {
     return DateFormat('hh:mm a', 'ar').format(dateTime);
   }
+
 }

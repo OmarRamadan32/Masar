@@ -8,17 +8,20 @@ import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
 
 class TodayTasksProgressCard extends StatelessWidget {
-  const new({super.key, required this.inCompleteTasks});
+  const new({super.key, required this.inCompleteTasks, required this.completedTasks});
   final int inCompleteTasks;
+  final int completedTasks;
 
   @override
   Widget build(BuildContext context) {
-    List<TaskModel> tasks = context.read<TasksCubit>().tasksList;
+    List<TaskModel> tasks = context
+        .read<TasksCubit>()
+        .tasksList
+        .where((element) => element.remainingCount > 0)
+        .toList();
 
-    int completedTasksCount = tasks
-        .where((element) => element.isCompleted)
-        .length;
-    int inCompleteTasks = tasks.length - completedTasksCount;
+    int completedTasks = tasks.where((element) => element.isCompleted).length;
+    int inCompleteTasks = tasks.length - completedTasks;
 
     String cardTitle = inCompleteTasks == 0
         ? "جميع المهام مكتملة"
@@ -26,7 +29,7 @@ class TodayTasksProgressCard extends StatelessWidget {
 
     String completionPercentage = tasks.isEmpty
         ? "0%"
-        : "${((completedTasksCount / tasks.length) * 100).toStringAsFixed(0)}%";
+        : "${((completedTasks / tasks.length) * 100).toStringAsFixed(0)}%";
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),

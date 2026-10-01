@@ -10,11 +10,11 @@ class TaskOverviewSectionTwo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
         TaskOverviewCard(
           title: nextDate,
-          subtitle: "الموعد القادم",
+          subtitle: "نوع التكرار",
           icon: IconsaxPlusBold.notification,
           isPrimary: false,
         ),

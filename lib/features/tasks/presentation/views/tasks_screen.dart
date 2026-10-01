@@ -30,7 +30,16 @@ class _TasksScreenState extends State<TasksScreen> {
     return BlocBuilder<TasksCubit, TasksState>(
       builder: (context, state) {
         if (state is TasksLoaded) {
-          List<TaskModel> tasks = state.tasks;
+          List<TaskModel> incompletedTasks = state.tasks
+              .where(
+                (element) => !element.isCompleted && element.remainingCount > 0,
+              )
+              .toList();
+          List<TaskModel> completedTasks = state.tasks
+              .where(
+                (element) => element.isCompleted && element.remainingCount > 0,
+              )
+              .toList();
           return CustomScreen(
             canPop: false,
             child: CustomScrollView(
@@ -43,13 +52,10 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 const SliverToBoxAdapter(child: AppSizes.h10),
-
                 SliverToBoxAdapter(
                   child: TasksOverviewSection(
-                    completedTasks: tasks
-                        .where((element) => element.isCompleted)
-                        .length,
-                    tasksWithHighPriority: tasks
+                    completedTasks: completedTasks.length,
+                    tasksWithHighPriority: incompletedTasks
                         .where((element) => element.priority == AppOptions.high)
                         .length,
                   ),
@@ -58,13 +64,33 @@ class _TasksScreenState extends State<TasksScreen> {
 
                 SliverToBoxAdapter(
                   child: TodayTasksProgressCard(
-                    inCompleteTasks: tasks
-                        .where((element) => !element.isCompleted)
-                        .length,
+                    completedTasks: completedTasks.length,
+                    inCompleteTasks: incompletedTasks.length,
                   ),
                 ),
                 const SliverToBoxAdapter(child: AppSizes.h10),
-                TasksSliverListView(tasks: tasks),
+                incompletedTasks.isNotEmpty
+                    ? SliverMainAxisGroup(
+                        slivers: [
+                          const SliverToBoxAdapter(
+                            child: Text("المهام غير المكتملة"),
+                          ),
+                          const SliverToBoxAdapter(child: AppSizes.h10),
+                          TasksSliverListView(tasks: incompletedTasks.toList()),
+                        ],
+                      )
+                    : const SliverToBoxAdapter(),
+                completedTasks.isNotEmpty
+                    ? SliverMainAxisGroup(
+                        slivers: [
+                          const SliverToBoxAdapter(
+                            child: Text("المهام السابقة"),
+                          ),
+                          const SliverToBoxAdapter(child: AppSizes.h10),
+                          TasksSliverListView(tasks: completedTasks),
+                        ],
+                      )
+                    : const SliverToBoxAdapter(child: SizedBox.shrink()),
               ],
             ),
           );

@@ -26,41 +26,47 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoriesCubit, CategoriesState>(
-      builder: (context, state) {
-        if (state is CategoriesLoaded) {
-          return CustomScreen(
-            canPop: false,
-            child: Column(
-              children: [
-                const ScreenTitle(
-                  title: "الفئات",
-                  hasOptions: true,
-                  addItemScreenPath: AppRoutes.addCategory,
-                ),
-                AppSizes.h10,
-                CategoriesTabsRow(
-                  selectedCategoryIndex: (selctedIndex) {
-                    index = selctedIndex;
-                    setState(() {});
-                  },
-                  categories: state.categories,
-                ),
-                AppSizes.h20,
-                const CategoryViewSwitcher(),
-                AppSizes.h10,
-                Expanded(
-                  child: NotesGridView(
-                    categoryName: state.categories[index].name,
-                  ),
-                ),
-              ],
-            ),
-          );
-        } else {
-          return const Center(child: Text("لا يوحد اي فئات بعد"));
-        }
-      },
+    return CustomScreen(
+      canPop: false,
+      child: Column(
+        children: [
+          const ScreenTitle(
+            title: "الفئات",
+            hasOptions: true,
+            addItemScreenPath: AppRoutes.addCategory,
+          ),
+          AppSizes.h10,
+          BlocBuilder<CategoriesCubit, CategoriesState>(
+            builder: (context, state) {
+              if (state is CategoriesLoaded && state.categories.isNotEmpty) {
+                return Column(
+                  children: [
+                    CategoriesTabsRow(
+                      selectedCategoryIndex: (selctedIndex) {
+                        index = selctedIndex;
+                        setState(() {});
+                      },
+                      categories: state.categories,
+                    ),
+                    AppSizes.h20,
+                    const CategoryViewSwitcher(),
+                    AppSizes.h10,
+                    Expanded(
+                      child: NotesGridView(
+                        categoryName: state.categories[index].name,
+                      ),
+                    ),
+                  ],
+                );
+              } else {
+                return const Expanded(
+                  child: Center(child: Text("لا توجد اي فئات لعرضها")),
+                );
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 }
