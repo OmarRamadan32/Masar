@@ -62,7 +62,14 @@ class TaskScreen extends StatelessWidget {
                         },
                       )
                     : const Center(
-                        child: Text("تم انجاز جميع مرات تكرار المهمة"),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.check, color: Colors.green),
+                            AppSizes.w4,
+                            Text("تم انجاز جميع مرات تكرار المهمة"),
+                          ],
+                        ),
                       ),
 
                 AppSizes.h20,
