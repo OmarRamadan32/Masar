@@ -8,6 +8,7 @@ import 'package:masar/features/categories/presentation/widgets/categories_tabs_r
 import 'package:masar/features/categories/presentation/widgets/category_view_switcher.dart';
 import 'package:masar/core/widgets/screen_title.dart';
 import 'package:masar/features/notes/presentation/widgets/notes_grid_view.dart';
+import 'package:masar/features/tasks/presentation/widgets/tasks_list_view.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const new({super.key});
@@ -20,12 +21,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   void initState() {
     context.read<CategoriesCubit>().getCategories();
+    categoryName = context.read<CategoriesCubit>().categories[0].name;
     super.initState();
   }
 
-  int index = 0;
+  int categoriesIndex = 0;
+  int viewsIndex = 0;
+  String? categoryName;
   @override
   Widget build(BuildContext context) {
+    List<Widget> views = [
+      NotesGridView(categoryName: categoryName),
+      TasksListView(categoryName: categoryName!),
+    ];
     return CustomScreen(
       canPop: false,
       child: Column(
@@ -44,19 +52,21 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     children: [
                       CategoriesTabsRow(
                         selectedCategoryIndex: (selctedIndex) {
-                          index = selctedIndex;
+                          categoriesIndex = selctedIndex;
+                          categoryName = state.categories[selctedIndex].name;
                           setState(() {});
                         },
                         categories: state.categories,
                       ),
                       AppSizes.h20,
-                      const CategoryViewSwitcher(),
-                      AppSizes.h10,
-                      Expanded(
-                        child: NotesGridView(
-                          categoryName: state.categories[index].name,
-                        ),
+                      CategoryViewSwitcher(
+                        onTab: (index) {
+                          viewsIndex = index;
+                          setState(() {});
+                        },
                       ),
+                      AppSizes.h10,
+                      Expanded(child: views[viewsIndex]),
                     ],
                   ),
                 );

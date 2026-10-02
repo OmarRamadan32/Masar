@@ -7,7 +7,7 @@ import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/core/widgets/screen_title.dart';
 import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
-import 'package:masar/features/tasks/presentation/widgets/tasks_list_view.dart';
+import 'package:masar/features/tasks/presentation/widgets/tasks_sliver_list_view.dart';
 import 'package:masar/features/tasks/presentation/widgets/tasks_overview_section.dart';
 import 'package:masar/features/tasks/presentation/widgets/today_tasks_progress_card.dart';
 

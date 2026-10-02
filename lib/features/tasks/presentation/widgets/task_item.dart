@@ -29,7 +29,7 @@ class _TaskItemState extends State<TaskItem> {
     widget.task.completedCount = widget.task.isCompleted
         ? widget.task.completedCount + 1
         : widget.task.completedCount - 1;
-    context.read<TasksCubit>().updateTask(task: widget.task);
+    await context.read<TasksCubit>().updateTask(task: widget.task);
   }
 
   @override

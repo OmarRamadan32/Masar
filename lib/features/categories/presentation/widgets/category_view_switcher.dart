@@ -4,7 +4,8 @@ import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/features/categories/presentation/widgets/category_view_switcher_item.dart';
 
 class CategoryViewSwitcher extends StatefulWidget {
-  const new({super.key});
+  const new({super.key, this.onTab});
+ final Function(int index)? onTab;
   @override
   State<CategoryViewSwitcher> createState() => _CategoryViewSwitcherState();
 }
@@ -29,6 +30,7 @@ class _CategoryViewSwitcherState extends State<CategoryViewSwitcher> {
           (index) => Expanded(
             child: GestureDetector(
               onTap: () {
+                widget.onTab!(index);
                 selectedIndex = index;
                 setState(() {});
               },
