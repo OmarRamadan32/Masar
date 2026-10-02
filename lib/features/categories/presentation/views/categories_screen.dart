@@ -39,24 +39,26 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           BlocBuilder<CategoriesCubit, CategoriesState>(
             builder: (context, state) {
               if (state is CategoriesLoaded && state.categories.isNotEmpty) {
-                return Column(
-                  children: [
-                    CategoriesTabsRow(
-                      selectedCategoryIndex: (selctedIndex) {
-                        index = selctedIndex;
-                        setState(() {});
-                      },
-                      categories: state.categories,
-                    ),
-                    AppSizes.h20,
-                    const CategoryViewSwitcher(),
-                    AppSizes.h10,
-                    Expanded(
-                      child: NotesGridView(
-                        categoryName: state.categories[index].name,
+                return Expanded(
+                  child: Column(
+                    children: [
+                      CategoriesTabsRow(
+                        selectedCategoryIndex: (selctedIndex) {
+                          index = selctedIndex;
+                          setState(() {});
+                        },
+                        categories: state.categories,
                       ),
-                    ),
-                  ],
+                      AppSizes.h20,
+                      const CategoryViewSwitcher(),
+                      AppSizes.h10,
+                      Expanded(
+                        child: NotesGridView(
+                          categoryName: state.categories[index].name,
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               } else {
                 return const Expanded(
