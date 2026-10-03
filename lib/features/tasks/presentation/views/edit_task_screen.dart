@@ -55,6 +55,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
       widget.task.priority = priority!;
       widget.task.repeatCount = repeatCount!;
       widget.task.repeatType = repeatType!;
+      widget.task.category = selectedCategory;
       await tasksCubit.updateTask(task: widget.task);
     }
   }
@@ -104,9 +105,13 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
             SliverToBoxAdapter(
               child: OptionsPicker(
                 onSelect: (value) {
-                  selectedCategory = categoriesCubit.categories.firstWhere(
-                    (element) => element.name == value,
-                  );
+                  if (value != null) {
+                    selectedCategory = categoriesCubit.categories.firstWhere(
+                      (element) => element.name == value,
+                    );
+                  } else {
+                    selectedCategory = null;
+                  }
                 },
                 title: "القسم",
                 titleIcon: IconsaxPlusLinear.category_2,
