@@ -43,6 +43,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       );
     } else {
       TasksCubit tasksCubit = context.read<TasksCubit>();
+      CategoriesCubit categoriesCubit = context.read<CategoriesCubit>();
       TaskModel task = TaskModel(
         title: titleController.text,
         description: descriptionController.text,
@@ -55,6 +56,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         repeatType: repeatType!,
       );
       await tasksCubit.addTask(task: task);
+      categoriesCubit.getCategories();
     }
   }
 

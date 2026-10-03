@@ -33,6 +33,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
 
   Future<void> addNote() async {
     NotesCubit notesCubit = context.read<NotesCubit>();
+    CategoriesCubit categoriesCubit = context.read<CategoriesCubit>();
     String noteTitle = noteTitleController.text;
     String noteContent = noteContentController.text;
     //--
@@ -44,6 +45,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
       time: DateFormatter.formatTimeOnly(DateTime.now()),
     );
     await notesCubit.addNote(note: noteModel);
+    categoriesCubit.getCategories();
   }
 
   late TextEditingController noteTitleController;

@@ -7,6 +7,7 @@ import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/utils/date_formatter.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/core/widgets/custom_text_field.dart';
+import 'package:masar/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:masar/features/notes/data/models/note_model.dart';
 import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
 
@@ -38,9 +39,11 @@ class _NoteScreenState extends State<NoteScreen> {
 
   void updateNote() async {
     NotesCubit notesCubit = context.read<NotesCubit>();
+    CategoriesCubit categoriesCubit = context.read<CategoriesCubit>();
     widget.note.date = DateFormatter.formatDateOnly(DateTime.now());
     widget.note.time = DateFormatter.formatTimeOnly(DateTime.now());
     await notesCubit.updateNote(note: widget.note);
+    categoriesCubit.getCategories();
   }
 
   bool get isChanged {

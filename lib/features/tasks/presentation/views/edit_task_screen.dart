@@ -50,6 +50,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
       );
     } else {
       TasksCubit tasksCubit = context.read<TasksCubit>();
+      CategoriesCubit categoriesCubit = context.read<CategoriesCubit>();
       widget.task.title = titleController.text;
       widget.task.description = descriptionController.text;
       widget.task.priority = priority!;
@@ -57,6 +58,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
       widget.task.repeatType = repeatType!;
       widget.task.category = selectedCategory;
       await tasksCubit.updateTask(task: widget.task);
+      categoriesCubit.getCategories();
     }
   }
 
