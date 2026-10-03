@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/utils/popup_utils.dart';
 import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
@@ -25,7 +27,9 @@ class TasksSliverListView extends StatelessWidget {
               details,
               editText: "تعديل",
               deleteText: "حذف",
-              onEdit: () {},
+              onEdit: () {
+                context.push(AppRoutes.editTask, extra: sortedTasks[index]);
+              },
               onDelete: () {
                 context.read<TasksCubit>().deleteTask(task: sortedTasks[index]);
               },

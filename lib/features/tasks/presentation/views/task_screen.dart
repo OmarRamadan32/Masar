@@ -45,7 +45,18 @@ class TaskScreen extends StatelessWidget {
                   nextDate: task.repeatType,
                 ),
                 AppSizes.h20,
-                Text("تفاصيل المهمة", style: AppStyles.primaryRegular16),
+                if (task.description != null)
+                  Column(
+                    children: [
+                      Text("تفاصيل المهمة", style: AppStyles.primaryRegular16),
+                      AppSizes.h10,
+                      Text(
+                        task.description!,
+                        style: AppStyles.primaryRegular14,
+                      ),
+                    ],
+                  ),
+
                 const Spacer(),
                 if (task.isCompleted)
                   Center(

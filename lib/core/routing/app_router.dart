@@ -11,6 +11,7 @@ import 'package:masar/features/notes/presentation/views/notes_screen.dart';
 import 'package:masar/features/settings/presentation/views/settings_screen.dart';
 import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/views/add_task_screen.dart';
+import 'package:masar/features/tasks/presentation/views/edit_task_screen.dart';
 import 'package:masar/features/tasks/presentation/views/task_screen.dart';
 import 'package:masar/features/tasks/presentation/views/tasks_screen.dart';
 
@@ -67,6 +68,12 @@ final appRouter = GoRouter(
               path: AppRoutes.addTask,
               builder: (context, state) => const AddTaskScreen(),
             ),
+            GoRoute(
+              path: AppRoutes.editTask,
+              builder: (context, state) =>  EditTaskScreen(
+                task: state.extra as TaskModel,
+              ),
+            )
           ],
         ),
         // --Categories branch

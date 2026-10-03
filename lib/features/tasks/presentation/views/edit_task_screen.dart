@@ -16,24 +16,31 @@ import 'package:masar/features/categories/presentation/cubit/categories_cubit.da
 import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
 
-class AddTaskScreen extends StatefulWidget {
-  const new({super.key});
+class EditTaskScreen extends StatefulWidget {
+  const new({super.key, required this.task});
+  final TaskModel task;
 
   @override
-  State<AddTaskScreen> createState() => _AddTaskScreenState();
+  State<EditTaskScreen> createState() => _EditTaskScreenState();
 }
 
-class _AddTaskScreenState extends State<AddTaskScreen> {
+class _EditTaskScreenState extends State<EditTaskScreen> {
   // Initialize controllers
   @override
   void initState() {
     titleController = TextEditingController();
     descriptionController = TextEditingController();
+    titleController.text = widget.task.title;
+    descriptionController.text = widget.task.description ?? '';
+    selectedCategory = widget.task.category;
+    priority = widget.task.priority;
+    repeatCount = widget.task.repeatCount;
+    repeatType = widget.task.repeatType;
     context.read<CategoriesCubit>().getCategories();
     super.initState();
   }
 
-  Future<void> _addTask(BuildContext context) async {
+  Future<void> _updateTask(BuildContext context) async {
     if (titleController.text.isEmpty ||
         priority == null ||
         repeatCount == null ||
@@ -43,18 +50,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       );
     } else {
       TasksCubit tasksCubit = context.read<TasksCubit>();
-      TaskModel task = TaskModel(
-        title: titleController.text,
-        description: descriptionController.text,
-        date: DateTime.now(),
-        time: DateTime.now(),
-        category: selectedCategory,
-        priority: priority!,
-        repeatCount: repeatCount!,
-        completedCount: 0,
-        repeatType: repeatType!,
-      );
-      await tasksCubit.addTask(task: task);
+      widget.task.title = titleController.text;
+      widget.task.description = descriptionController.text;
+      widget.task.priority = priority!;
+      widget.task.repeatCount = repeatCount!;
+      widget.task.repeatType = repeatType!;
+      await tasksCubit.updateTask(task: widget.task);
     }
   }
 
@@ -92,6 +93,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             const SliverToBoxAdapter(child: AppSizes.h10),
             SliverToBoxAdapter(
               child: CustomTextField(
+                initialValue: widget.task.title,
                 controller: titleController,
                 isTitle: true,
                 type: CustomTextFieldType.normalTextField,
@@ -108,6 +110,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 },
                 title: "القسم",
                 titleIcon: IconsaxPlusLinear.category_2,
+                initialOption: widget.task.category?.name,
                 optionsList: categoriesCubit.categories
                     .map((e) => e.name)
                     .toList(),
@@ -116,6 +119,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             const SliverToBoxAdapter(child: AppSizes.h10),
             SliverToBoxAdapter(
               child: OptionsPicker(
+                initialOption: widget.task.priority,
                 onSelect: (value) {
                   priority = value;
                 },
@@ -127,6 +131,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             const SliverToBoxAdapter(child: AppSizes.h10),
             SliverToBoxAdapter(
               child: OptionsPicker(
+                initialOption: widget.task.repeatCount.toString(),
                 onSelect: (value) {
                   if (value == AppOptions.infinite) {
                     repeatCount = 9999999;
@@ -148,6 +153,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             const SliverToBoxAdapter(child: AppSizes.h10),
             SliverToBoxAdapter(
               child: OptionsPicker(
+                initialOption: widget.task.repeatType,
                 onSelect: (value) {
                   repeatType = value;
                 },
@@ -167,8 +173,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               fillOverscroll: false,
               child: Column(
                 children: [
-                   Expanded(
+                  Expanded(
                     child: CustomTextField(
+                      initialValue: widget.task.description,
                       controller: descriptionController,
                       type: CustomTextFieldType.infinityTextField,
                       hintText: "ملاحظات",
@@ -178,7 +185,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   CustomButton(
                     buttonTitle: "إتمام",
                     onPress: () {
-                      _addTask(context);
+                      _updateTask(context);
                     },
                   ),
                   AppSizes.h10,
