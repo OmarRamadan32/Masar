@@ -23,7 +23,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     CategoriesCubit cubit = context.read<CategoriesCubit>();
     cubit.getCategories();
     if (cubit.categories.isNotEmpty) {
-      categoryName = context.read<CategoriesCubit>().categories[0].name;
+      categoryName = cubit.categories[0].name;
     }
     super.initState();
   }
@@ -33,10 +33,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   String? categoryName;
   @override
   Widget build(BuildContext context) {
-    List<Widget> views = [
-      NotesGridView(categoryName: categoryName),
-      TasksListView(categoryName: categoryName),
-    ];
     return CustomScreen(
       canPop: false,
       child: Column(
@@ -50,6 +46,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           BlocBuilder<CategoriesCubit, CategoriesState>(
             builder: (context, state) {
               if (state is CategoriesLoaded && state.categories.isNotEmpty) {
+                List<Widget> views = [
+                  NotesGridView(categoryName: categoryName),
+                  TasksListView(categoryName: categoryName),
+                ];
                 return Expanded(
                   child: Column(
                     children: [

@@ -16,16 +16,19 @@ class TasksCubit extends Cubit<TasksState> {
   }
 
   Future<void> addTask({required TaskModel task}) async {
+    emit(TasksLoading());
     await tasksRepo.addTask(task: task);
     getTasks();
   }
 
   Future<void> updateTask({required TaskModel task}) async {
+    emit(TasksLoading());
     await tasksRepo.updateTask(task: task);
     getTasks();
   }
 
   Future<void> deleteTask({required TaskModel task}) async {
+    emit(TasksLoading());
     await tasksRepo.deleteTask(task: task);
     getTasks();
   }
