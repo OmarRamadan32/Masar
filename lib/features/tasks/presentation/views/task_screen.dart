@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
-import 'package:masar/core/utils/date_formatter.dart';
 import 'package:masar/core/widgets/custom_button.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/features/tasks/data/models/task_model.dart';
@@ -15,17 +14,13 @@ class TaskScreen extends StatelessWidget {
   final TaskModel task;
 
   Future<void> _onPress(BuildContext context) async {
-    if (task.remainingCount > 0) {
-      task.isCompleted = !task.isCompleted;
-      // Last check date
-      task.lastCheckDate = DateFormatter.formatDateOnly(DateTime.now());
-      // Completed count
-      task.completedCount = task.isCompleted
-          ? task.completedCount + 1
-          : task.completedCount - 1;
-      // is Task Completed
+    if (task.canCheck) {
+      task.checkTask();
+      context.read<TasksCubit>().updateTask(task: task);
+    } else if (task.isCompletedForToday) {
+      task.unCheckTask();
+      context.read<TasksCubit>().updateTask(task: task);
     }
-    context.read<TasksCubit>().updateTask(task: task);
   }
 
   @override
@@ -46,31 +41,39 @@ class TaskScreen extends StatelessWidget {
                 ),
                 AppSizes.h10,
                 TaskOverviewSectionTwo(
-                  isDone: task.isCompleted,
+                  isDone: task.isCompletedForToday,
                   nextDate: task.repeatType,
                 ),
                 AppSizes.h20,
                 Text("تفاصيل المهمة", style: AppStyles.primaryRegular16),
                 const Spacer(),
-                task.remainingCount > 0
-                    ? CustomButton(
-                        buttonTitle: task.isCompleted == false
-                            ? "انجاز المهمة"
-                            : "الغاء الانجاز",
-                        onPress: () {
-                          _onPress(context);
-                        },
-                      )
-                    : const Center(
-                        child: Row(
+                if (task.isCompleted)
+                  Center(
+                    child: Column(
+                      children: [
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.check, color: Colors.green),
+                            const Icon(Icons.check, color: Colors.green),
                             AppSizes.w4,
-                            Text("تم انجاز جميع مرات تكرار المهمة"),
+                            Text(
+                              "تم انجاز جميع تكرارات المهمة",
+                              style: AppStyles.primaryBold14,
+                            ),
                           ],
                         ),
-                      ),
+                        AppSizes.h20,
+                      ],
+                    ),
+                  ),
+                CustomButton(
+                  buttonTitle: task.isCompletedForToday == false
+                      ? "انجاز المهمة"
+                      : "الغاء الانجاز",
+                  onPress: () {
+                    _onPress(context);
+                  },
+                ),
 
                 AppSizes.h20,
               ],

@@ -19,23 +19,22 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
     return TaskModel(
       title: fields[0] as String,
       description: fields[1] as String?,
-      date: fields[2] as String,
-      time: fields[3] as String,
+      date: fields[2] as DateTime,
+      time: fields[3] as DateTime,
       category: fields[4] as CategoryModel?,
       priority: fields[5] as String,
-      isCompleted: fields[6] as bool,
-      repeatCount: fields[7] as int,
-      completedCount: fields[8] as int,
-      repeatType: fields[9] as String,
-      lastCheckDate: fields[10] as String?,
-      previousCheckDate: fields[11] as String?,
+      repeatCount: fields[6] as int,
+      completedCount: fields[7] as int,
+      repeatType: fields[8] as String,
+      lastCheckDate: fields[9] as DateTime?,
+      previousCheckDate: fields[10] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, TaskModel obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -49,16 +48,14 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
       ..writeByte(5)
       ..write(obj.priority)
       ..writeByte(6)
-      ..write(obj.isCompleted)
-      ..writeByte(7)
       ..write(obj.repeatCount)
-      ..writeByte(8)
+      ..writeByte(7)
       ..write(obj.completedCount)
-      ..writeByte(9)
+      ..writeByte(8)
       ..write(obj.repeatType)
-      ..writeByte(10)
+      ..writeByte(9)
       ..write(obj.lastCheckDate)
-      ..writeByte(11)
+      ..writeByte(10)
       ..write(obj.previousCheckDate);
   }
 

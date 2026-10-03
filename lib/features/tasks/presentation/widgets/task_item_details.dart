@@ -6,9 +6,15 @@ import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
 
 class TaskItemDetails extends StatelessWidget {
-  const new({super.key, required this.priority, this.categoryName});
+  const new({
+    super.key,
+    required this.priority,
+    this.categoryName,
+    required this.isCompleted,
+  });
   final String priority;
   final String? categoryName;
+  final bool isCompleted;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +47,17 @@ class TaskItemDetails extends StatelessWidget {
           ],
         ),
         AppSizes.w10,
+        if (isCompleted)
+          Row(
+            children: [
+              const Icon(Icons.check, size: 11, color: Colors.green),
+              AppSizes.w4,
+              Text(
+                "مكتملة بالكامل",
+                style: AppStyles.primaryBold14.copyWith(fontSize: 11),
+              ),
+            ],
+          ),
       ],
     );
   }

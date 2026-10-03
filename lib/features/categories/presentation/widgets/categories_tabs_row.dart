@@ -3,8 +3,12 @@ import 'package:masar/features/categories/data/models/category_model.dart';
 import 'package:masar/features/categories/presentation/widgets/categories_teb_item.dart';
 
 class CategoriesTabsRow extends StatefulWidget {
-  const new({super.key, required this.categories, required this.selectedCategoryIndex});
-  final List<CategoryModel> categories;
+  const new({
+    super.key,
+    required this.categories,
+    required this.selectedCategoryIndex,
+  });
+  final List<CategoryModel>? categories;
   final Function(int index) selectedCategoryIndex;
 
   @override
@@ -22,17 +26,20 @@ class _CategoriesTabsRowState extends State<CategoriesTabsRow> {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount:widget.categories.length,
+              itemCount: (widget.categories?.length) ?? 0,
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () => setState(() {
                   selectedIndex = index;
                   widget.selectedCategoryIndex(index);
                 }),
-                child: CategoriesTabItem(
-                  color: Color(widget.categories[index].color),
-                  title:widget.categories[index].name,
-                  isSelected: index == selectedIndex,
-                ),
+                child:
+                    widget.categories != null || widget.categories!.isNotEmpty
+                    ? CategoriesTabItem(
+                        color: Color(widget.categories![index].color),
+                        title: widget.categories![index].name,
+                        isSelected: index == selectedIndex,
+                      )
+                    : const SizedBox(),
               ),
             ),
           ),

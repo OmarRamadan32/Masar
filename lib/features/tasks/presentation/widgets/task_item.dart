@@ -5,7 +5,6 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
-import 'package:masar/core/utils/date_formatter.dart';
 import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
 import 'package:masar/features/tasks/presentation/widgets/task_item_details.dart';
@@ -24,12 +23,13 @@ class TaskItem extends StatefulWidget {
 
 class _TaskItemState extends State<TaskItem> {
   Future<void> _onPress() async {
-    widget.task.isCompleted = !widget.task.isCompleted;
-    widget.task.lastCheckDate = DateFormatter.formatDateOnly(DateTime.now());
-    widget.task.completedCount = widget.task.isCompleted
-        ? widget.task.completedCount + 1
-        : widget.task.completedCount - 1;
-    await context.read<TasksCubit>().updateTask(task: widget.task);
+    if (widget.task.canCheck) {
+      widget.task.checkTask();
+      context.read<TasksCubit>().updateTask(task: widget.task);
+    } else if (widget.task.isCompletedForToday) {
+      widget.task.unCheckTask();
+      context.read<TasksCubit>().updateTask(task: widget.task);
+    }
   }
 
   @override
@@ -47,7 +47,9 @@ class _TaskItemState extends State<TaskItem> {
             onTap: () {
               _onPress();
             },
-            child: TaskItemCheckbox(isCompleted: widget.task.isCompleted),
+            child: TaskItemCheckbox(
+              isCompleted: widget.task.isCompletedForToday,
+            ),
           ),
           AppSizes.w10,
           Column(
@@ -55,10 +57,11 @@ class _TaskItemState extends State<TaskItem> {
             children: [
               TaskItemTitle(
                 title: widget.task.title,
-                isCompleted: widget.task.isCompleted,
+                isCompleted: widget.task.isCompletedForToday,
               ),
               AppSizes.h4,
               TaskItemDetails(
+                isCompleted: widget.task.isCompleted,
                 priority: widget.task.priority,
                 categoryName: widget.task.category?.name,
               ),

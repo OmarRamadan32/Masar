@@ -5,7 +5,6 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:masar/core/constants/app_enums.dart';
 import 'package:masar/core/constants/app_options.dart';
 import 'package:masar/core/theme/app_sizes.dart';
-import 'package:masar/core/utils/date_formatter.dart';
 import 'package:masar/core/widgets/custom_button.dart';
 import 'package:masar/core/widgets/custom_option_widget.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
@@ -44,16 +43,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       );
     } else {
       TasksCubit tasksCubit = context.read<TasksCubit>();
-      String date = DateFormatter.formatDateOnly(DateTime.now());
-      String time = DateFormatter.formatTimeOnly(DateTime.now());
       TaskModel task = TaskModel(
         title: titleController.text,
         description: descriptionController.text,
-        date: date,
-        time: time,
+        date: DateTime.now(),
+        time: DateTime.now(),
         category: selectedCategory,
         priority: priority!,
-        isCompleted: false,
         repeatCount: repeatCount!,
         completedCount: 0,
         repeatType: repeatType!,

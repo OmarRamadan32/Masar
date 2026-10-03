@@ -12,8 +12,8 @@ class TasksSliverListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<TaskModel> sortedTasks = [
-      ...tasks.where((task) => !task.isCompleted),
-      ...tasks.where((task) => task.isCompleted),
+      ...tasks.where((task) => !task.isCompletedForToday),
+      ...tasks.where((task) => task.isCompletedForToday),
     ];
     return SliverList.builder(
       itemCount: sortedTasks.length,

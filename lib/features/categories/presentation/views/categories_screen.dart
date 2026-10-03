@@ -20,8 +20,11 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   void initState() {
-    context.read<CategoriesCubit>().getCategories();
-    categoryName = context.read<CategoriesCubit>().categories[0].name;
+    CategoriesCubit cubit = context.read<CategoriesCubit>();
+    cubit.getCategories();
+    if (cubit.categories.isNotEmpty) {
+      categoryName = context.read<CategoriesCubit>().categories[0].name;
+    }
     super.initState();
   }
 
@@ -32,7 +35,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   Widget build(BuildContext context) {
     List<Widget> views = [
       NotesGridView(categoryName: categoryName),
-      TasksListView(categoryName: categoryName!),
+      TasksListView(categoryName: categoryName),
     ];
     return CustomScreen(
       canPop: false,

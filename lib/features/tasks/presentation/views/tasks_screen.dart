@@ -31,14 +31,10 @@ class _TasksScreenState extends State<TasksScreen> {
       builder: (context, state) {
         if (state is TasksLoaded) {
           List<TaskModel> incompletedTasks = state.tasks
-              .where(
-                (element) => !element.isCompleted && element.remainingCount > 0,
-              )
+              .where((element) => !element.isCompletedForToday)
               .toList();
           List<TaskModel> completedTasks = state.tasks
-              .where(
-                (element) => element.isCompleted && element.remainingCount > 0,
-              )
+              .where((element) => element.isCompletedForToday)
               .toList();
           return CustomScreen(
             canPop: false,

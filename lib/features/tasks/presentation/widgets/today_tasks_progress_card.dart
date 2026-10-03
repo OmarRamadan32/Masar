@@ -8,19 +8,21 @@ import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
 
 class TodayTasksProgressCard extends StatelessWidget {
-  const new({super.key, required this.inCompleteTasks, required this.completedTasks});
+  const new({
+    super.key,
+    required this.inCompleteTasks,
+    required this.completedTasks,
+  });
   final int inCompleteTasks;
   final int completedTasks;
 
   @override
   Widget build(BuildContext context) {
-    List<TaskModel> tasks = context
-        .read<TasksCubit>()
-        .tasksList
-        .where((element) => element.remainingCount > 0)
-        .toList();
+    List<TaskModel> tasks = context.read<TasksCubit>().tasksList;
 
-    int completedTasks = tasks.where((element) => element.isCompleted).length;
+    int completedTasks = tasks
+        .where((element) => element.isCompletedForToday)
+        .length;
     int inCompleteTasks = tasks.length - completedTasks;
 
     String cardTitle = inCompleteTasks == 0

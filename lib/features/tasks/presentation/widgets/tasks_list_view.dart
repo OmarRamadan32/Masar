@@ -6,8 +6,8 @@ import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
 import 'package:masar/features/tasks/presentation/widgets/task_item.dart';
 
 class TasksListView extends StatefulWidget {
-  const new({super.key, required this.categoryName});
-  final String categoryName;
+  const new({super.key,  this.categoryName});
+  final String? categoryName;
 
   @override
   State<TasksListView> createState() => _TasksListViewState();
@@ -23,9 +23,7 @@ class _TasksListViewState extends State<TasksListView> {
   @override
   Widget build(BuildContext context) {
     List<TaskModel> tasksList = context.read<TasksCubit>().tasksList;
-    List<TaskModel> sortedTasks = [
-      ...tasksList.where((task) => task.category?.name == widget.categoryName),
-    ];
+    List<TaskModel> sortedTasks = widget.categoryName == null ? [] : tasksList.where((task) => task.category?.name == widget.categoryName).toList();
     return BlocBuilder<TasksCubit, TasksState>(
       builder: (context, state) {
         if (state is TasksLoaded) {
