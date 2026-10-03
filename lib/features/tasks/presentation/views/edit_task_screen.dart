@@ -131,11 +131,17 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
             const SliverToBoxAdapter(child: AppSizes.h10),
             SliverToBoxAdapter(
               child: OptionsPicker(
-                initialOption: widget.task.repeatCount.toString(),
+                initialOption: widget.task.repeatCount.toString() == "1"
+                    ? "بدون تكرار"
+                    : widget.task.repeatCount == 9999999
+                    ? "لا نهائي"
+                    : widget.task.repeatCount.toString(),
                 onSelect: (value) {
-                  if (value == AppOptions.infinite) {
+                  if (value == AppOptions.infinite ||
+                      value == 9999999.toString()) {
                     repeatCount = 9999999;
-                  } else if (value == AppOptions.noRepeat) {
+                  } else if (value == AppOptions.noRepeat ||
+                      value == "بدون تكرار") {
                     repeatCount = 1;
                   } else {
                     repeatCount = int.parse(value!);
