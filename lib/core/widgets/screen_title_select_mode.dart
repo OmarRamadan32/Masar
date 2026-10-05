@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:masar/core/cubit/selection_cubit.dart';
 import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/theme/app_styles.dart';
@@ -24,7 +26,7 @@ class ScreenTitleSelectMode extends StatelessWidget {
                   ),
 
                   Text(
-                    "3",
+                    "${context.read<SelectionCubit>().state.selectedItems.length}",
                     style: AppStyles.primaryBold20.copyWith(
                       color: AppColors.primaryColor,
                     ),
@@ -35,7 +37,9 @@ class ScreenTitleSelectMode extends StatelessWidget {
             Row(
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    onDelete!();
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
@@ -52,7 +56,7 @@ class ScreenTitleSelectMode extends StatelessWidget {
                 AppSizes.w20,
                 GestureDetector(
                   onTap: () {
-                    // this will Trigger the Normal (Note/Task) Mode
+                    context.read<SelectionCubit>().toggleSelectionMode();
                   },
                   child: Container(
                     padding: const EdgeInsets.all(6),

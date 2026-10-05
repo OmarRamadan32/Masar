@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masar/core/widgets/screen_title_normal_mode.dart';
+import 'package:masar/core/widgets/screen_title_select_mode.dart';
 
 class ScreenTitle extends StatelessWidget {
   const new({
@@ -7,22 +8,29 @@ class ScreenTitle extends StatelessWidget {
     required this.title,
     this.addItemScreenPath,
     required this.hasOptions,
+    this.onDelete,
+    this.isSelectMode,
   });
   final String title;
   final String? addItemScreenPath;
   final bool hasOptions;
-  // final State triggeredState;
-  //(for example: Select Note State) if the current State is Select Note State it will return ScreenTitleSelectMode
+  final Function()? onDelete;
+  final bool? isSelectMode;
 
   @override
   Widget build(BuildContext context) {
-    /*
-    this will return screen title based on the current State 
-    */
-    return ScreenTitleNormalMode(
-      hasOptions: hasOptions,
-      title: title,
-      addItemScreenPath: addItemScreenPath,
-    );
+    if (isSelectMode == true) {
+      return ScreenTitleSelectMode(
+        onDelete: () {
+          onDelete!();
+        },
+      );
+    } else {
+      return ScreenTitleNormalMode(
+        hasOptions: hasOptions,
+        title: title,
+        addItemScreenPath: addItemScreenPath,
+      );
+    }
   }
 }

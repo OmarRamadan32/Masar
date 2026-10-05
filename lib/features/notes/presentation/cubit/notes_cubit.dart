@@ -30,4 +30,9 @@ class NotesCubit extends Cubit<NotesState> {
     await notesRepo.updateNote(note: note);
     getNotes();
   }
+
+  Future<void> deleteNotes({required List<NoteModel> notes}) async {
+    await notesRepo.deleteNotes(notes: notes);
+    getNotes();
+  }
 }

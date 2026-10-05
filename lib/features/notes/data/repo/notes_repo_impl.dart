@@ -31,4 +31,11 @@ class NotesRepoImpl implements NotesRepo {
   Future<void> updateNote({required NoteModel note})async {
      note.save();
   }
+
+  @override
+  Future<void> deleteNotes({required List<NoteModel> notes})async {
+    for (var note in notes) {
+      note.delete();
+    }
+  }
 }
