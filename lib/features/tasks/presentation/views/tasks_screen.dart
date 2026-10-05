@@ -52,7 +52,11 @@ class _TasksScreenState extends State<TasksScreen> {
                   child: TasksOverviewSection(
                     completedTasks: completedTasks.length,
                     tasksWithHighPriority: incompletedTasks
-                        .where((element) => element.priority == AppOptions.high)
+                        .where(
+                          (element) =>
+                              element.priority == AppOptions.high &&
+                              !element.isCompleted,
+                        )
                         .length,
                   ),
                 ),
