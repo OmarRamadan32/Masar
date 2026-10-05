@@ -7,6 +7,11 @@ class NoteCardTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(title, style: AppStyles.primaryBold16);
+    return Text(
+      title,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+      style: AppStyles.primaryBold16,
+    );
   }
 }
