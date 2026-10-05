@@ -26,7 +26,7 @@ class _TaskItemState extends State<TaskItem> {
     if (widget.task.canCheck) {
       widget.task.checkTask();
       context.read<TasksCubit>().updateTask(task: widget.task);
-    } else if (widget.task.isCompletedForToday) {
+    } else if (widget.task.isCompletedForToday || widget.task.isCompleted) {
       widget.task.unCheckTask();
       context.read<TasksCubit>().updateTask(task: widget.task);
     }
@@ -48,7 +48,8 @@ class _TaskItemState extends State<TaskItem> {
               _onPress();
             },
             child: TaskItemCheckbox(
-              isCompleted: widget.task.isCompletedForToday,
+              isCompleted: widget.task.isCompleted,
+              isCompletedForToday: widget.task.isCompletedForToday,
             ),
           ),
           AppSizes.w10,

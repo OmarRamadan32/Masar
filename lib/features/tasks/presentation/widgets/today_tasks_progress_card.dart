@@ -21,7 +21,7 @@ class TodayTasksProgressCard extends StatelessWidget {
     List<TaskModel> tasks = context.read<TasksCubit>().tasksList;
 
     int completedTasks = tasks
-        .where((element) => element.isCompletedForToday)
+        .where((element) => element.isCompletedForToday || element.isCompleted)
         .length;
     int inCompleteTasks = tasks.length - completedTasks;
 

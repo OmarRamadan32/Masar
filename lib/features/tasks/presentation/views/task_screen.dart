@@ -17,7 +17,7 @@ class TaskScreen extends StatelessWidget {
     if (task.canCheck) {
       task.checkTask();
       context.read<TasksCubit>().updateTask(task: task);
-    } else if (task.isCompletedForToday) {
+    } else if (task.isCompletedForToday || task.isCompleted) {
       task.unCheckTask();
       context.read<TasksCubit>().updateTask(task: task);
     }
@@ -41,7 +41,7 @@ class TaskScreen extends StatelessWidget {
                 ),
                 AppSizes.h10,
                 TaskOverviewSectionTwo(
-                  isDone: task.isCompletedForToday,
+                  isDone: task.isCompletedForToday || task.isCompleted,
                   nextDate: task.repeatType,
                 ),
                 AppSizes.h20,
@@ -78,7 +78,8 @@ class TaskScreen extends StatelessWidget {
                     ),
                   ),
                 CustomButton(
-                  buttonTitle: task.isCompletedForToday == false
+                  buttonTitle:
+                      task.isCompletedForToday == false && task.canCheck
                       ? "انجاز المهمة"
                       : "الغاء الانجاز",
                   onPress: () {

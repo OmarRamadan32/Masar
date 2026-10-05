@@ -3,11 +3,12 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:masar/core/theme/app_colors.dart';
 
 class TaskItemCheckbox extends StatelessWidget {
-  const new({super.key, required this.isCompleted});
+  const new({super.key, required this.isCompletedForToday, required this.isCompleted});
+  final bool isCompletedForToday;
   final bool isCompleted;
   @override
   Widget build(BuildContext context) {
-    if (isCompleted) {
+    if (isCompletedForToday || isCompleted) {
       return const Icon(
         IconsaxPlusBold.tick_circle,
         color: AppColors.primaryColor,

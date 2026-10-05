@@ -10,14 +10,8 @@ class NoteCardDate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          date,
-          style: AppStyles.secondaryRegular11.copyWith(height: 1),
-        ),
-        Text(
-          time,
-          style: AppStyles.secondaryRegular11.copyWith(height: 1),
-        ),
+        Text(date, style: AppStyles.secondaryRegular11.copyWith(height: 1)),
+        Text(time, style: AppStyles.secondaryRegular11.copyWith(height: 1)),
       ],
     );
   }

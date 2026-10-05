@@ -23,7 +23,7 @@ class SelectableItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TaskItemCheckbox(isCompleted: isSelected),
+          TaskItemCheckbox(isCompleted: false, isCompletedForToday: isSelected),
           AppSizes.h10,
           IgnorePointer(ignoring: true, child: item),
         ],
