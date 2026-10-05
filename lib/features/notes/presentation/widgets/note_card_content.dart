@@ -9,7 +9,7 @@ class NoteCardContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       overflow: TextOverflow.ellipsis,
-      maxLines: 5,
+      maxLines: 6,
       text,
       style: AppStyles.primaryRegular14,
     );

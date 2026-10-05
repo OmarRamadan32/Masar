@@ -14,7 +14,6 @@ class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(maxHeight: 200),
       padding: const EdgeInsets.all(AppSizes.s10),
       decoration: BoxDecoration(
         color: AppColors.cardsColor,
@@ -32,15 +31,13 @@ class NoteCard extends StatelessWidget {
             ],
           ),
           AppSizes.h10,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                NoteCardTitle(title: note.title),
-                AppSizes.h10,
-                Expanded(child: NoteCardContent(text: note.content)),
-              ],
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              NoteCardTitle(title: note.title),
+              AppSizes.h10,
+              NoteCardContent(text: note.content),
+            ],
           ),
         ],
       ),
