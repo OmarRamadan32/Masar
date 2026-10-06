@@ -51,41 +51,49 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
     return BlocListener<CategoriesCubit, CategoriesState>(
       child: CustomScreen(
         canPop: true,
-        child: Column(
-          children: [
-            AppSizes.h10,
-            const ScreenTitle(title: "اضافة قسم", hasOptions: false),
-            AppSizes.h10,
-            CustomTextField(
-              controller: titleController,
-              type: CustomTextFieldType.normalTextField,
-              hintText: "اسم القسم",
-            ),
-            AppSizes.h10,
-            CustomTextField(
-              controller: noteController,
-              type: CustomTextFieldType.multiLineTextField,
-              hintText: "ملاحظة",
-              maxLines: 3,
-            ),
-            AppSizes.h10,
-            ColorsPickerWidget(
-              onColorSelected: (selectedColor) {
-                categoryColor = selectedColor;
-              },
-            ),
-            const Spacer(),
-            CustomButton(
-              buttonTitle: "إتمام",
-              onPress: () async {
-                if (titleController.text.isNotEmpty) {
-                  await _addCategory();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("يرجى ادخال اسم القسم")),
-                  );
-                }
-              },
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                children: [
+                  AppSizes.h10,
+                  const ScreenTitle(title: "اضافة قسم", hasOptions: false),
+                  AppSizes.h10,
+                  CustomTextField(
+                    controller: titleController,
+                    type: CustomTextFieldType.normalTextField,
+                    hintText: "اسم القسم",
+                  ),
+                  AppSizes.h10,
+                  CustomTextField(
+                    controller: noteController,
+                    type: CustomTextFieldType.multiLineTextField,
+                    hintText: "ملاحظة",
+                    maxLines: 3,
+                  ),
+                  AppSizes.h10,
+                  ColorsPickerWidget(
+                    onColorSelected: (selectedColor) {
+                      categoryColor = selectedColor;
+                    },
+                  ),
+                  const Spacer(),
+                  CustomButton(
+                    buttonTitle: "إتمام",
+                    onPress: () async {
+                      if (titleController.text.isNotEmpty) {
+                        await _addCategory();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("يرجى ادخال اسم القسم")),
+                        );
+                      }
+                    },
+                  ),
+                  AppSizes.h10,
+                ],
+              ),
             ),
           ],
         ),
@@ -98,3 +106,57 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
     );
   }
 }
+
+/*
+      child: CustomScreen(
+        canPop: true,
+        child: CustomScrollView(
+          slivers: [
+            const SliverToBoxAdapter(child: AppSizes.h10),
+            const SliverToBoxAdapter(
+              child: ScreenTitle(title: "اضافة قسم", hasOptions: false),
+            ),
+            const SliverToBoxAdapter(child: AppSizes.h10),
+            SliverToBoxAdapter(
+              child: CustomTextField(
+                controller: titleController,
+                type: CustomTextFieldType.normalTextField,
+                hintText: "اسم القسم",
+              ),
+            ),
+            const SliverToBoxAdapter(child: AppSizes.h10),
+            SliverToBoxAdapter(
+              child: CustomTextField(
+                controller: noteController,
+                type: CustomTextFieldType.multiLineTextField,
+                hintText: "ملاحظة",
+                maxLines: 3,
+              ),
+            ),
+            const SliverToBoxAdapter(child: AppSizes.h10),
+            SliverToBoxAdapter(
+              child: ColorsPickerWidget(
+                onColorSelected: (selectedColor) {
+                  categoryColor = selectedColor;
+                },
+              ),
+            ),
+            const SliverFillRemaining(),
+            SliverToBoxAdapter(
+              child: CustomButton(
+                buttonTitle: "إتمام",
+                onPress: () async {
+                  if (titleController.text.isNotEmpty) {
+                    await _addCategory();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("يرجى ادخال اسم القسم")),
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+*/
