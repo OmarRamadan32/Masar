@@ -23,12 +23,19 @@ class TaskItem extends StatefulWidget {
 
 class _TaskItemState extends State<TaskItem> {
   Future<void> _onPress() async {
+    TasksCubit cubit = context.read<TasksCubit>();
     if (widget.task.canCheck) {
       widget.task.checkTask();
-      context.read<TasksCubit>().updateTask(task: widget.task);
+      cubit.updateTask(task: widget.task);
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('تم إنجاز المهمة بنجاح ')));
     } else if (widget.task.isCompletedForToday || widget.task.isCompleted) {
       widget.task.unCheckTask();
-      context.read<TasksCubit>().updateTask(task: widget.task);
+      cubit.updateTask(task: widget.task);
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('تم إلغاء إنجاز المهمة ')));
     }
   }
 

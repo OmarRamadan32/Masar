@@ -13,6 +13,12 @@ class AppThemes {
     buttonTheme: buttonTheme,
     scaffoldBackgroundColor: AppColors.surfacePrimaryColor,
     appBarTheme: appBarTheme,
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: AppColors.primaryColor,
+      contentTextStyle: AppStyles.primaryRegular14.copyWith(
+        color: AppColors.surfacePrimaryColor,
+      ),
+    ),
   );
   //------------
   static final ButtonThemeData buttonTheme = ButtonThemeData(
@@ -20,17 +26,16 @@ class AppThemes {
     shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(16)),
   );
   //------------
-  static final InputDecorationTheme inputDecorationTheme = const InputDecorationTheme(
-    filled: false,
-    fillColor: AppColors.surfaceSecondaryColor,
-              border: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              errorBorder: InputBorder.none,
-              disabledBorder: InputBorder.none,
-
-    
-  );
+  static final InputDecorationTheme inputDecorationTheme =
+      const InputDecorationTheme(
+        filled: false,
+        fillColor: AppColors.surfaceSecondaryColor,
+        border: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        errorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+      );
 
   static final appBarTheme = AppBarTheme(
     titleTextStyle: AppStyles.secondaryBold24,

@@ -14,12 +14,18 @@ class TaskScreen extends StatelessWidget {
   final TaskModel task;
 
   Future<void> _onPress(BuildContext context) async {
+    TasksCubit cubit = context.read<TasksCubit>();
     if (task.canCheck) {
       task.checkTask();
-      context.read<TasksCubit>().updateTask(task: task);
+      cubit.updateTask(task: task);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('تم انجاز المهمة بنجاح')));
     } else if (task.isCompletedForToday || task.isCompleted) {
       task.unCheckTask();
-      context.read<TasksCubit>().updateTask(task: task);
+      cubit.updateTask(task: task);
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('تم إلغاء إنجاز المهمة ')));
     }
   }
 
