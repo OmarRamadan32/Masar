@@ -38,4 +38,16 @@ class NotesRepoImpl implements NotesRepo {
       note.delete();
     }
   }
+
+  @override
+  Future<void> removeNotesCategory({required String categoryName})async {
+    // get notes by category
+    List<NoteModel> notesList = databaseService.getAll<NoteModel>( 
+    boxName
+    );
+    for (var note in notesList.where((element) => element.category?.name == categoryName,)) {
+      note.category = null;
+   await   note.save();
+    }
+  }
 }

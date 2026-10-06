@@ -6,6 +6,8 @@ import 'package:masar/core/theme/app_styles.dart';
 import 'package:masar/core/utils/popup_utils.dart';
 import 'package:masar/features/categories/data/models/category_model.dart';
 import 'package:masar/features/categories/presentation/cubit/categories_cubit.dart';
+import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
+import 'package:masar/features/tasks/presentation/cubit/tasks_cubit.dart';
 
 class CategoriesTabItem extends StatelessWidget {
   const new({super.key, required this.isSelected, required this.category});
@@ -26,6 +28,12 @@ class CategoriesTabItem extends StatelessWidget {
           },
           onDelete: () {
             context.read<CategoriesCubit>().deleteCategory(category: category);
+            context.read<NotesCubit>().removeNotesCategory(
+              categoryName: category.name,
+            );
+            context.read<TasksCubit>().removeTasksCategory(
+              categoryName: category.name,
+            );
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(const SnackBar(content: Text('تم حذف الفئة بنجاح')));

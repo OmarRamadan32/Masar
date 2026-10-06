@@ -38,4 +38,10 @@ class TasksCubit extends Cubit<TasksState> {
     await tasksRepo.deleteTasks(tasks: tasks);
     getTasks();
   }
+
+  Future<void> removeTasksCategory({required String categoryName}) async {
+    emit(TasksLoading());
+    await tasksRepo.removeTasksCategory(categoryName: categoryName);
+    getTasks();
+  }
 }

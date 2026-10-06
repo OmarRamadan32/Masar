@@ -6,4 +6,5 @@ abstract class NotesRepo {
   Future<void> deleteNotes({required List<NoteModel> notes,});
   Future<void> updateNote({required NoteModel note,});
   List<NoteModel> getAllNotes();
+  Future<void> removeNotesCategory({required String categoryName});
 }

@@ -6,5 +6,6 @@ abstract class TasksRepo {
   Future<void> deleteTasks({required List<TaskModel> tasks,});
   Future<void> updateTask({required TaskModel task,});
   List<TaskModel> getTasks();
+  Future<void> removeTasksCategory({required String categoryName});
   
 }

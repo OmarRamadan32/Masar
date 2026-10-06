@@ -33,4 +33,14 @@ class TaskRepoImpl implements TasksRepo {
      await task.delete();
     }
   }
+
+  @override
+  Future<void> removeTasksCategory({required String categoryName})async {
+    /// get categories
+    List<TaskModel> tasksList = databaseService.getAll<TaskModel>(boxName);
+    for (var task in tasksList.where((element) => element.category?.name == categoryName,)) {
+      task.category = null;
+   await   task.save();
+    }
+  }
 }

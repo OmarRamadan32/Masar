@@ -35,4 +35,9 @@ class NotesCubit extends Cubit<NotesState> {
     await notesRepo.deleteNotes(notes: notes);
     getNotes();
   }
+
+  Future<void> removeNotesCategory({required String categoryName}) async {
+    await notesRepo.removeNotesCategory(categoryName: categoryName);
+    getNotes();
+  }
 }
