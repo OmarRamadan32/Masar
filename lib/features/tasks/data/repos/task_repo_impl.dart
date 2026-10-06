@@ -26,4 +26,11 @@ class TaskRepoImpl implements TasksRepo {
   Future<void> updateTask({required TaskModel task})async {
     await task.save();
   }
+
+  @override
+  Future<void> deleteTasks({required List<TaskModel> tasks})async {
+    for (var task in tasks) {
+     await task.delete();
+    }
+  }
 }

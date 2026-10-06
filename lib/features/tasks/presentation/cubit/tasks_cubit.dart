@@ -32,4 +32,10 @@ class TasksCubit extends Cubit<TasksState> {
     await tasksRepo.deleteTask(task: task);
     getTasks();
   }
+
+  Future<void> deleteTasks({required List<TaskModel> tasks}) async {
+    emit(TasksLoading());
+    await tasksRepo.deleteTasks(tasks: tasks);
+    getTasks();
+  }
 }
