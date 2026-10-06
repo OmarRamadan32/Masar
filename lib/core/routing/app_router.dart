@@ -9,6 +9,7 @@ import 'package:masar/features/notes/presentation/views/add_note_screen.dart';
 import 'package:masar/features/notes/presentation/views/note_screen.dart';
 import 'package:masar/features/notes/presentation/views/notes_screen.dart';
 import 'package:masar/features/settings/presentation/views/settings_screen.dart';
+import 'package:masar/features/splash/presentation/views/splash_screen.dart';
 import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/views/add_task_screen.dart';
 import 'package:masar/features/tasks/presentation/views/edit_task_screen.dart';
@@ -24,7 +25,7 @@ Every branch has its own pages as routes(the first route is the default page-the
 
 final appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: AppRoutes.notes,
+  initialLocation: AppRoutes.splash,
   routes: [
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
@@ -101,5 +102,8 @@ final appRouter = GoRouter(
         ),
       ],
     ),
+    GoRoute(path: AppRoutes.splash,
+    builder: (context, state) => SplashScreen(),
+    )
   ],
 );

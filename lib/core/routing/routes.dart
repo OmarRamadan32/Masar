@@ -13,5 +13,6 @@ abstract class AppRoutes {
   static const addCategory = '/addCategory';
   // --Settings branch
   static const settings = '/settings';
-
+  // --Splash
+  static const splash = '/splash';
 }
