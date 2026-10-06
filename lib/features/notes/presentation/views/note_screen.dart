@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:masar/core/constants/app_enums.dart';
-import 'package:masar/core/theme/app_colors.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/utils/date_formatter.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
@@ -26,20 +25,28 @@ class _NoteScreenState extends State<NoteScreen> {
   @override
   void initState() {
     super.initState();
+    oldNote = NoteModel(
+      title: widget.note.title,
+      content: widget.note.content,
+      date: widget.note.date,
+      time: widget.note.time,
+    );
     titleController = TextEditingController(text: widget.note.title);
     contentController = TextEditingController(text: widget.note.content);
-
     titleController.addListener(_onTextChanged);
     contentController.addListener(_onTextChanged);
   }
 
-  void _onTextChanged() {
+  void _onTextChanged() async {
+    await updateNote();
     setState(() {});
   }
 
-  void updateNote() async {
+  Future<void> updateNote() async {
     NotesCubit notesCubit = context.read<NotesCubit>();
     CategoriesCubit categoriesCubit = context.read<CategoriesCubit>();
+    widget.note.title = titleController.text.trim();
+    widget.note.content = contentController.text.trim();
     widget.note.date = DateFormatter.formatDateOnly(DateTime.now());
     widget.note.time = DateFormatter.formatTimeOnly(DateTime.now());
     await notesCubit.updateNote(note: widget.note);
@@ -47,8 +54,19 @@ class _NoteScreenState extends State<NoteScreen> {
   }
 
   bool get isChanged {
-    return titleController.text.trim() != widget.note.title ||
-        contentController.text.trim() != widget.note.content;
+    return widget.note.title.trim() != oldNote.title.trim() ||
+        widget.note.content.trim() != oldNote.content.trim();
+  }
+
+  Future<void> restoreOldNote() async {
+    titleController.text = oldNote.title;
+    contentController.text = oldNote.content;
+    NotesCubit notesCubit = context.read<NotesCubit>();
+    widget.note.title = oldNote.title;
+    widget.note.content = oldNote.content;
+    widget.note.date = oldNote.date;
+    widget.note.time = oldNote.time;
+    await notesCubit.updateNote(note: widget.note);
   }
 
   @override
@@ -60,20 +78,17 @@ class _NoteScreenState extends State<NoteScreen> {
     super.dispose();
   }
 
+  late NoteModel oldNote;
+
   @override
   Widget build(BuildContext context) {
     return CustomScreen(
       action: isChanged
           ? IconButton(
               onPressed: () async {
-                widget.note.title = titleController.text.trim();
-                widget.note.content = contentController.text.trim();
-                updateNote();
-                if (context.mounted) {
-                  context.pop();
-                }
+                await restoreOldNote();
               },
-              icon: const Icon(Icons.check, color: AppColors.primaryColor),
+              icon: const Icon(IconsaxPlusLinear.back_square),
             )
           : const SizedBox.shrink(),
       canPop: true,
