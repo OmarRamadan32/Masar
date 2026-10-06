@@ -40,7 +40,7 @@ class CategoriesEmptyView extends StatelessWidget {
               context.push(AppRoutes.addCategory);
             },
             child: Text(
-              "إضافة قئة",
+              "إضافة فئة",
               style: AppStyles.primaryBold14.copyWith(
                 color: AppColors.primaryColor,
               ),
