@@ -13,12 +13,8 @@ class TasksSliverListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<TaskModel> sortedTasks = [
-      ...tasks.where((task) => !task.isCompletedForToday),
-      ...tasks.where((task) => task.isCompletedForToday),
-    ];
     return SliverList.builder(
-      itemCount: sortedTasks.length,
+      itemCount: tasks.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onLongPressStart: (LongPressStartDetails details) {
@@ -28,16 +24,16 @@ class TasksSliverListView extends StatelessWidget {
               editText: "تعديل",
               deleteText: "حذف",
               onEdit: () {
-                context.push(AppRoutes.editTask, extra: sortedTasks[index]);
+                context.push(AppRoutes.editTask, extra: tasks[index]);
               },
               onDelete: () {
-                context.read<TasksCubit>().deleteTask(task: sortedTasks[index]);
+                context.read<TasksCubit>().deleteTask(task: tasks[index]);
               },
             );
           },
           child: Padding(
             padding: const EdgeInsets.only(bottom: 8),
-            child: TaskItem(task: sortedTasks[index]),
+            child: TaskItem(task: tasks[index]),
           ),
         );
       },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:masar/core/constants/app_options.dart';
 import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/theme/app_sizes.dart';
+import 'package:masar/core/theme/app_styles.dart';
 import 'package:masar/core/widgets/screen_title.dart';
 import 'package:masar/features/tasks/data/models/task_model.dart';
 import 'package:masar/features/tasks/presentation/widgets/tasks_overview_section.dart';
@@ -55,7 +56,12 @@ class TasksViewSection extends StatelessWidget {
         incompletedTasks.isNotEmpty
             ? SliverMainAxisGroup(
                 slivers: [
-                  const SliverToBoxAdapter(child: Text("المهام غير المكتملة")),
+                  SliverToBoxAdapter(
+                    child: Text(
+                      "المهام غير المكتملة",
+                      style: AppStyles.primaryRegular14,
+                    ),
+                  ),
                   const SliverToBoxAdapter(child: AppSizes.h10),
                   TasksSliverListView(tasks: incompletedTasks.toList()),
                 ],
@@ -64,7 +70,12 @@ class TasksViewSection extends StatelessWidget {
         completedTasks.isNotEmpty
             ? SliverMainAxisGroup(
                 slivers: [
-                  const SliverToBoxAdapter(child: Text("المهام السابقة")),
+                  SliverToBoxAdapter(
+                    child: Text(
+                      "المهام السابقة",
+                      style: AppStyles.primaryRegular14,
+                    ),
+                  ),
                   const SliverToBoxAdapter(child: AppSizes.h10),
                   TasksSliverListView(tasks: completedTasks),
                 ],
