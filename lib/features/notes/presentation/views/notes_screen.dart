@@ -49,9 +49,7 @@ class _NotesScreenState extends State<NotesScreen> {
                   ScreenTitle(
                     isSelectMode: true,
                     onDelete: () {
-                      _deleteNotes(
-                        context,
-                      );
+                      _deleteNotes(context);
                     },
                     title: "الملاحظات",
                     hasOptions: true,
@@ -65,6 +63,7 @@ class _NotesScreenState extends State<NotesScreen> {
               return const Column(
                 children: [
                   ScreenTitle(
+                    hasSelectionMode: true,
                     isSelectMode: false,
                     addItemScreenPath: AppRoutes.addNote,
                     title: "الملاحظات",

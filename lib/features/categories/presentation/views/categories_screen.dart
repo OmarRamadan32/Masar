@@ -39,6 +39,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         children: [
           const ScreenTitle(
             title: "الفئات",
+            hasSelectionMode: false,
             hasOptions: true,
             addItemScreenPath: AppRoutes.addCategory,
           ),
@@ -46,7 +47,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           BlocBuilder<CategoriesCubit, CategoriesState>(
             builder: (context, state) {
               if (state is CategoriesLoaded && state.categories.isNotEmpty) {
-                print(state.categories);
                 List<Widget> views = [
                   NotesGridView(categoryName: categoryName),
                   TasksListView(categoryName: categoryName),

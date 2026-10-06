@@ -10,12 +10,14 @@ class ScreenTitle extends StatelessWidget {
     required this.hasOptions,
     this.onDelete,
     this.isSelectMode,
+    this.hasSelectionMode,
   });
   final String title;
   final String? addItemScreenPath;
   final bool hasOptions;
   final Function()? onDelete;
   final bool? isSelectMode;
+  final bool? hasSelectionMode;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class ScreenTitle extends StatelessWidget {
       );
     } else {
       return ScreenTitleNormalMode(
+        hasSelectionMode: hasSelectionMode,
         hasOptions: hasOptions,
         title: title,
         addItemScreenPath: addItemScreenPath,

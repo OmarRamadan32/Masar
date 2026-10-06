@@ -13,11 +13,12 @@ class ScreenTitleNormalMode extends StatelessWidget {
     required this.title,
     this.addItemScreenPath,
     required this.hasOptions,
+    this.hasSelectionMode,
   });
   final String title;
   final String? addItemScreenPath;
   final bool hasOptions;
-
+  final bool? hasSelectionMode;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -43,23 +44,24 @@ class ScreenTitleNormalMode extends StatelessWidget {
                     ),
                   ),
                   AppSizes.w20,
-                  GestureDetector(
-                    onTap: () {
-                      context.read<SelectionCubit>().toggleSelectionMode();
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        borderRadius: AppSizes.r8,
-                        color: AppColors.cardsColor,
-                      ),
-                      child: const Icon(
-                        IconsaxPlusLinear.mouse_square,
-                        color: AppColors.textPrimaryColor,
-                        size: 22,
+                  if (hasSelectionMode == true)
+                    GestureDetector(
+                      onTap: () {
+                        context.read<SelectionCubit>().toggleSelectionMode();
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          borderRadius: AppSizes.r8,
+                          color: AppColors.cardsColor,
+                        ),
+                        child: const Icon(
+                          IconsaxPlusLinear.mouse_square,
+                          color: AppColors.textPrimaryColor,
+                          size: 22,
+                        ),
                       ),
                     ),
-                  ),
                 ],
               )
             : const SizedBox.shrink(),
