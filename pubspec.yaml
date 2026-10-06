@@ -68,6 +68,7 @@ flutter:
 
   assets:
     - assets/images/logo2.png
+    - assets/icons/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -6,6 +6,7 @@ import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/utils/popup_utils.dart';
 import 'package:masar/features/notes/data/models/note_model.dart';
 import 'package:masar/features/notes/presentation/cubit/notes_cubit.dart';
+import 'package:masar/features/notes/presentation/widgets/notes_empty_view.dart';
 import 'package:masar/features/notes/presentation/widgets/note_card.dart';
 
 class NotesGridView extends StatefulWidget {
@@ -17,11 +18,12 @@ class NotesGridView extends StatefulWidget {
 }
 
 class _NotesGridViewState extends State<NotesGridView> {
-    @override
+  @override
   void initState() {
     context.read<NotesCubit>().getNotes();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     NotesCubit notesCubit = context.read<NotesCubit>();
@@ -37,7 +39,7 @@ class _NotesGridViewState extends State<NotesGridView> {
             notes = state.notes;
           }
           if (notes.isEmpty) {
-            return const Center(child: Text('لا يوجد ملاحظات'));
+            return const NotesEmptyView();
           } else {
             return MasonryGridView.count(
               crossAxisCount: 2,

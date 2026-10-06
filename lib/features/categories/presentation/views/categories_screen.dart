@@ -4,6 +4,7 @@ import 'package:masar/core/routing/routes.dart';
 import 'package:masar/core/theme/app_sizes.dart';
 import 'package:masar/core/widgets/custom_screen.dart';
 import 'package:masar/features/categories/presentation/cubit/categories_cubit.dart';
+import 'package:masar/features/categories/presentation/widgets/categories_empty_view.dart';
 import 'package:masar/features/categories/presentation/widgets/categories_tabs_row.dart';
 import 'package:masar/features/categories/presentation/widgets/category_view_switcher.dart';
 import 'package:masar/core/widgets/screen_title.dart';
@@ -75,9 +76,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   ),
                 );
               } else {
-                return const Expanded(
-                  child: Center(child: Text("لا توجد اي فئات لعرضها")),
-                );
+                return Expanded(child: const CategoriesEmptyView());
               }
             },
           ),
