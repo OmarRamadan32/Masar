@@ -21,7 +21,7 @@ class TasksViewSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (incompletedTasks.isNotEmpty && completedTasks.isNotEmpty) {
+    if (incompletedTasks.isNotEmpty || completedTasks.isNotEmpty) {
       return CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(
