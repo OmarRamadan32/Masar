@@ -35,8 +35,7 @@ class _CategoriesTabsRowState extends State<CategoriesTabsRow> {
                 child:
                     widget.categories != null || widget.categories!.isNotEmpty
                     ? CategoriesTabItem(
-                        color: Color(widget.categories![index].color),
-                        title: widget.categories![index].name,
+                        category: widget.categories![index],
                         isSelected: index == selectedIndex,
                       )
                     : const SizedBox(),
