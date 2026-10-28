@@ -50,9 +50,20 @@ Masar follows the **MVVM (Model-View-ViewModel)** pattern alongside a feature-ba
 
 The application separates its functionality into independent features, while Cubit manages UI state and Hive provides local data persistence for offline usage.
 
-## 📱 Screenshots
+## 📱 Behance
 
-<!-- Screen shots will be added here -->
+<p align="center">
+  <img src="Masar.png" alt="Masar App Preview" width="800"/>
+</p>
+
+Check out the full UI/UX design and project presentation on Behance:
+
+<p align="center">
+  <a href="https://www.behance.net/gallery/254977925/Masar">
+    <img src="https://img.shields.io/badge/View%20on-Behance-1769FF?style=for-the-badge&logo=behance&logoColor=white" alt="View on Behance"/>
+  </a>
+</p>
+
 
 
 **Omar Ramadan**
